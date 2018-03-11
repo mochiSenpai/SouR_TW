@@ -1,0 +1,121 @@
+
+<html>
+<head>
+<style>
+body {margin:0;}
+
+body {margin:0;}
+ 
+ .topbar {
+  overflow: hidden;
+  display: block;
+  background-color: #4d636f ;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.topbartext{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+}
+
+.titletext {
+   position: absolute;
+    top: 50%;
+    left: 50%;
+	bottom:30px;
+	display: block;
+    width: 400px;
+    height: 300px;
+    margin-top: -150px;
+    margin-left: -200px;
+	display: block;
+}
+
+.title { color:#4d636f;
+display: block;
+      text-align: right;
+	  text-transform: uppercase;
+	  font-size:30px;
+	  font-family: "Times New Roman", Times, serif;
+	  font-weight: bold;
+	  bottom:30px;
+	  margin:auto;
+	  
+}
+
+
+
+input[type=text],input[type=password],input[type=Date], select {
+    width: 350px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+	margin-right:-20%;
+	
+}
+
+input[type=submit] {
+    width: 350px;
+    background-color: #4d636f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: grey;
+}
+
+.div1 {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+	position: absolute;
+	left:650px;
+	top:300px;
+	width:350px;
+	display: block;
+	right:30px;
+	
+	
+}
+
+@media only screen and (max-width: 1100px) {
+    
+	
+	.div1 {left:5px;
+	       
+	       right:300px;
+	      float:left;
+		
+		  overflow: hidden;}
+ .titletext {
+	overflow: hidden;
+	position: fixed;
+}
+	
+	.title{text-align:left;
+	margin:auto;overflow: hidden;
+	position: relative;
+	
+	
+}
+
+
+
+
+</style>
+</head>
