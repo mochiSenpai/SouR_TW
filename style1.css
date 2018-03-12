@@ -23,17 +23,35 @@ body{
   margin: 0;
 }
  
- .topbar {
+.topbar {
   overflow: hidden;
-  display: block;
+  background-color: #4d636f ;
+  top: 0;
+  /*position: absolute;
+  /*display: block;
+  /*width: 100%;*/
+  padding: 0;
+  height:60px;
+  font-family: myFirstFont;
+  list-style-type: none;
+  margin: 0;
+} 
+
+ /*.topbar {
+  list-style-type: none;
+  overflow: hidden;
+  /*display: block;
   background-color: #4d636f ;
   top: 0px;
   margin: 0px;
-  /*padding: 5px;*/
+  padding: 0;
+  /*padding: 5px;
   font-family: myFirstFont;
+}*/
+
+.fl{
+  float: left;
 }
-
-
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -64,26 +82,26 @@ body{
    position: absolute;
     top: 50%;
     left: 50%;
-	 bottom:30px;
-	 display: block;
+   bottom:30px;
+   display: block;
     width: 400px;
     height: 300px;
     margin-top: -150px;
     margin-left: -200px;
-	display: block;
+  display: block;
 }*/
 
 .title { 
     color:#4d636f;
     display: block;
     text-align: center;
-	  text-transform: uppercase;
-	  font-size:30px;
-	  font-family: myFirstFont;
-	  font-weight: bold;
-	  /*bottom:30px;*/
-	  margin:auto;
-	  
+    text-transform: uppercase;
+    font-size:30px;
+    font-family: myFirstFont;
+    font-weight: bold;
+    /*bottom:30px;*/
+    margin:auto;
+    
 }
  
 
@@ -97,8 +115,8 @@ input[type=text],input[type=password],input[type=Date], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-	  margin-right:-20%;
-	
+    margin-right:-20%;
+  
 }
 
 input[type=submit] {
@@ -124,14 +142,14 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   position: relative;
   padding: 20px;
-	/*left:850px;
-	top:100px;
+  /*left:850px;
+  top:100px;
   right:30px;*/
-	width: 60%px;
-	display: block;
+  width: 60%px;
+  display: block;
   font-family: myFirstFont;
-	display: table;
-  box-sizing: border-box;	
+  display: table;
+  box-sizing: border-box; 
 }
 
 
@@ -140,7 +158,8 @@ input[type=submit]:hover {
     body{
       margin: 0;
     }
-	
+
+      
  .div1 {
   width: 100%;
   float: left;
@@ -158,6 +177,23 @@ input[type=submit]:hover {
   width: 100%;
  }
 
+.topbar {
+  overflow: hidden;
+  background-color: #4d636f ;
+  top: 0;
+  /*position: absolute;
+  /*display: block;
+  /*width: 100%;*/
+  padding: 0;
+  height:170px;
+  font-family: myFirstFont;
+  list-style-type: none;
+  margin: 0;
+}
+
+.fl{
+  float: none;
+}
 
 
 /*.title{
@@ -168,5 +204,5 @@ input[type=submit]:hover {
 
 }*/
 
-}	
+} 
 
