@@ -1,20 +1,29 @@
 * {
     box-sizing: border-box;
+    cursor: url(NormalSelect.cur), default;
 }
 
 body{
-	background-color: lightpink;
+	background-color: #C6C9AA;
+	margin : 0px;
+	/*
+	background-image: url("Images-Results/travel-wallpaper-blur-op.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+*/
+	background:url("Images-Results/travel-wallpaper-blur-op.jpg") no-repeat center center fixed;
+
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 600px){
 	body{
-		background-color: lightblue;
+		background-color: #C6C9AA;
 	}
 }
 
 [class*="col-"] {
     float: left;
-    padding: 15px;
+    padding: 5px;
  /*   border: 1px solid red; */
 }
 
@@ -39,26 +48,138 @@ body{
 .col-12 {width: 100%;}
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
     /* For mobile phones: */
     [class*="col-"] {
         width: 100%;
     }
+
+    [class*="breakrow"]{
+    	display: none;
+    }
+
+    [class*="empty"]{
+    	display: none;
+    }
+    
 }
 
 /*Etc*/
 
+.topbar {
+  overflow: hidden;
+  display: block;
+  background-color: #000000;/*#15113a; #4d636f;*/
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 14px 16px;
+  height: 8%;
+  z-index: 1000;
+  opacity: 0.6;
+}
+
 .empty{
-	background-color: purple;
+/*	background-color: #1A0B03;*/
 }
 
 .option{
-	height: 30%;
-	border-color: purple;
-	border-style: dashed;
+	text-align: center;
+	position: relative;
+	/*background-color: black;*/
+}
+
+.button{
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 	text-align: center;
 }
 
+.buttonText{
+	color: white;
+	font-size: 16px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.overlay:hover{opacity: 0.5;}
+
+.option:hover .button{
+	opacity: 1.0;
+	background-color: #8F0907;
+	border: none;
+	text-align: center;
+	display: inline-block;
+	/*color: white;*/
+	font-size: 16px;
+	padding: 16px 32px;
+	cursor: pointer;
+}
+
+.button:hover{
+	opacity: 1.0;
+}
+
+.priceTxt{
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	text-align: center;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	color: white;
+	text-shadow: 2px 2px #090101;
+	opacity: 0;
+	font-size: 2em;
+}
+
+.option:hover .priceTxt{
+	transition: .5s ease;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	opacity: 1;
+}
+
+.itemTitle{
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	text-align: center;
+	font-family: "Lucida Console", Monaco, monospace;
+	color: white;
+	text-shadow: 2px 2px #090101;
+	opacity: 0;
+	font-size: 1.5em;
+}
+
+.option:hover .itemTitle{
+	transition: .5s ease;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	opacity: 1;
+}
+
+.itemDescription{
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	text-align: center;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	color: white;
+	text-shadow: 2px 2px #090101;
+	opacity: 0;
+	font-size: 0.8em;
+}
+
+.option:hover .itemDescription{
+	transition: .5s ease;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	opacity: 1;
+}
 
 #resTitleDiv{
 	text-align: center;
@@ -70,4 +191,26 @@ body{
 	color: #660000;
 	font-size: 3em;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+
+
+/*Image style*/
+.image{
+	opacity: 1.0;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .5s ease;
+	backface-visibility: hidden;
+	border-style: groove;
+	border-color: #620604;
+}
+
+.image:hover{
+	opacity: 0.5;
+}
+
+.breakrow{
+	height: 5%;
 }
