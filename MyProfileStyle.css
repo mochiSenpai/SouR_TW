@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    cursor: url(NormalSelect.cur), default;
+}
+
+body{
+	background-color: #C6C9AA;
+	margin : 0px;
+	background:url("Images-Results/travel-wallpaper-blur-op.jpg") no-repeat center center fixed;
+
+}
+
+
+@media only screen and (max-width: 600px){
+	body{
+		background-color: #C6C9AA;
+	}
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 5px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*Desktop view*/
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;} 
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+@media only screen and (max-width: 960px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    [class*="breakrow"]{
+    	display: none;
+    }
+
+    [class*="empty"]{
+    	display: none;
+    }
+    
+}
+
+
+
+/*Etc*/
+
+.topbar {
+  overflow: hidden;
+  display: block;
+  background-color: #000000;/*#15113a; #4d636f;*/
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 14px 16px;
+  height: 8%;
+  z-index: 1000;
+  opacity: 0.6;
+}
+
+.empty{
+/*	background-color: #1A0B03;*/
+}
+
+.breakrow{
+	height: 5%;
+	
+}
+
+.mainProfileSpace{
+	/*background-color: #957D52; /*#BEB984;*/
+	height: 100%;
+	border: 1px solid red;
+}
+
+.profilePictureSpace{
+	border: 1px solid red;
+}
+
+.imgProfile{
+	height: 25%;
+	border-style: dashed;
+	border-color: darkred;
+}
+
+.userDescription{
+	height: 25%;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	border: 1px solid red;
+}
+
+.username{
+	font-size: 2.5em;
+	font-family: "Arial Black", Gadget, sans-serif; /*Verdana, Geneva, sans-serif;*/
+	position: relative;
+}
+
+.countryAge{
+	font-family: Arial, Helvetica, sans-serif;/*  "Lucida Console", Monaco, monospace;*/
+	font-size: 2.0em;
+	position: relative;
+}
+
+.dob{
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1.5em;
+	position: relative;
+}

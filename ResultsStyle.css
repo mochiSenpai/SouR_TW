@@ -6,11 +6,6 @@
 body{
 	background-color: #C6C9AA;
 	margin : 0px;
-	/*
-	background-image: url("Images-Results/travel-wallpaper-blur-op.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-*/
 	background:url("Images-Results/travel-wallpaper-blur-op.jpg") no-repeat center center fixed;
 
 }
@@ -24,7 +19,6 @@ body{
 [class*="col-"] {
     float: left;
     padding: 5px;
- /*   border: 1px solid red; */
 }
 
 .row::after {
@@ -88,11 +82,6 @@ body{
 	position: relative;
 	/*background-color: black;*/
 }
-/*
-.option:hover{
-	opacity: 0.6;
-}
-*/
 
 .button{
 	transition: .5s ease;
@@ -197,6 +186,7 @@ body{
 	color: #E3EA8C;
 	font-size: 3em;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	text-shadow: 2px 2px #474637;
 }
 
 
@@ -214,9 +204,32 @@ body{
 }
 
 .option:hover .image{
-	opacity: 0.6;
+	opacity: 0.4;
 }
 
 .breakrow{
 	height: 5%;
+}
+
+
+
+
+
+
+
+.dropdown{
+	position: relative;
+	display: inline-block;
+}
+
+.menuButton{
+	height: auto;
+}
+
+
+.menuButtomImg{
+	position: absolute;
+	left: 15%;
+	height: 20%;
+	width: auto;
 }
