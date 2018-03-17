@@ -88,6 +88,11 @@ body{
 	position: relative;
 	/*background-color: black;*/
 }
+/*
+.option:hover{
+	opacity: 0.6;
+}
+*/
 
 .button{
 	transition: .5s ease;
@@ -98,6 +103,8 @@ body{
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	text-align: center;
+	/*box-shadow: 2px 5px #0F0101; #251B1B #420808*/
+	box-shadow: 5px 5px #251B1B;
 }
 
 .buttonText{
@@ -106,7 +113,6 @@ body{
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
-.overlay:hover{opacity: 0.5;}
 
 .option:hover .button{
 	opacity: 1.0;
@@ -114,7 +120,6 @@ body{
 	border: none;
 	text-align: center;
 	display: inline-block;
-	/*color: white;*/
 	font-size: 16px;
 	padding: 16px 32px;
 	cursor: pointer;
@@ -162,6 +167,7 @@ body{
 	opacity: 1;
 }
 
+
 .itemDescription{
 	position: absolute;
 	top: 40%;
@@ -188,7 +194,7 @@ body{
 }
 
 #resTitleText{
-	color: #660000;
+	color: #E3EA8C;
 	font-size: 3em;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
@@ -207,8 +213,8 @@ body{
 	border-color: #620604;
 }
 
-.image:hover{
-	opacity: 0.5;
+.option:hover .image{
+	opacity: 0.6;
 }
 
 .breakrow{
