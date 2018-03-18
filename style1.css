@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -5,11 +6,10 @@
     font-family: myFirstFont;
     src: url(snoopy_reg-webfont.otf);
 }
-/*body {margin:0;}*/
 .motto{
   font-family: myFirstFont;
   font-size: 40px;
-  display: table;
+  display: block;
   width: 40%;
   float: left;
   padding: 15px;
@@ -26,30 +26,16 @@ body{
 .topbar {
   overflow: hidden;
   top: 0;
-  /*position: absolute;
-  /*display: block;
-  /*width: 100%;*/
+  display: block;
   padding: 0;
-  height:60px;
+  height:80px;
   font-family: myFirstFont;
-  list-style-type: none;
   margin: 0;
 } 
 
- /*.topbar {
-  list-style-type: none;
-  overflow: hidden;
-  /*display: block;
-  background-color: #4d636f ;
-  top: 0px;
-  margin: 0px;
-  padding: 0;
-  /*padding: 5px;
-  font-family: myFirstFont;
-}*/
-
 .fl{
   float: left;
+   padding: 14px 16px;
 }
 
 .col-1 {width: 8.33%;}
@@ -68,27 +54,6 @@ body{
     float: left;
     padding: 15px;
 }
-
-/*.topbartext{
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  font-family: myFirstFont;
-}*/
-
-/*.titletext {
-   position: absolute;
-    top: 50%;
-    left: 50%;
-   bottom:30px;
-   display: block;
-    width: 400px;
-    height: 300px;
-    margin-top: -150px;
-    margin-left: -200px;
-  display: block;
-}*/
 
 .title { 
     color:#4d636f;
@@ -136,6 +101,7 @@ input[type=submit]:hover {
 
 
 .div1 {
+  width: 300px;
   float: left;
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -144,33 +110,19 @@ input[type=submit]:hover {
   /*left:850px;
   top:100px;
   right:30px;*/
-  width: 60%px;
   display: block;
   font-family: myFirstFont;
-  display: table;
+  display: block;
   box-sizing: border-box; 
 }
 
 
 @media only screen and (max-width: 600px) {
     
-    body{
-      margin: 0;
-    }
-
-      
+    
  .div1 {
-  width: 100%;
-  float: left;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 10px;
-  width: 75%;
-  display: block;
-  font-family: myFirstFont;
-  display: table;
-  box-sizing: border-box; 
-
+  width: 300px;
+  
 }
  .motto{
   width: 100%;
@@ -178,28 +130,15 @@ input[type=submit]:hover {
 
 .topbar {
   overflow: hidden;
-  background-color: #4d636f ;
   top: 0;
-  /*position: absolute;
-  /*display: block;
-  /*width: 100%;*/
   padding: 0;
-  height:170px;
+  height:250px;
   font-family: myFirstFont;
-  list-style-type: none;
   margin: 0;
 }
 
-.fl{
-  float: none;
-}
 
 
-/*.title{
-  text-align:left;
-  margin:auto;
-  overflow: hidden;
-  position: relative;
-}*/
 
 } 
+
