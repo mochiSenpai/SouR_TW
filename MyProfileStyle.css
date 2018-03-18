@@ -56,7 +56,48 @@ body{
     [class*="empty"]{
     	display: none;
     }
-    
+
+}
+
+/*iPhone 7
+@media only screen and(max-width: 450px)
+and (min-width: 0px){
+
+    [class*="username"]{
+    	font-size: 75%;
+    }
+
+    .profilePicture{
+		width: 100%;
+		align-items: center;
+	}
+
+    .imgProfile{
+		height: 50%;
+		align-self: center;
+	}
+}
+*/
+
+/*iPad*/
+@media only screen and (max-width: 1024px)
+and (min-width: 960px){
+	.col-1 .empty{
+		display: none;
+	}
+
+	.profilePicture .col-3{
+		width: 100%;
+		position: relative;
+		left: 50%;
+	}
+
+	.imgProfile{
+		height: 50%;
+		align-content: center;
+		align-self: center;
+		align-items: center;
+	}
 }
 
 /*Etc*/
@@ -116,6 +157,7 @@ body{
 }
 
 .userDescription{
+	position: relative;
 	height: 25%;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	font-size: 16px;
@@ -152,15 +194,21 @@ body{
 
 
 
-p{
+.normalP{
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	font-size: 2.5em;
+	font-size: 1.8em;
 	text-align: center;
 	text-shadow: 2px 2px #A5ECAB;
 	color: #0E2C11;
 }
 
-
+.countP{
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 2.5em;
+	text-align: center;
+	text-shadow: 2px 2px #0E2C11;
+	color: #88E0B2;
+}
 
 .accordion {
     background-color: #eee;
@@ -197,4 +245,81 @@ p{
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    background-image: url("Images-Results/black.png");
+
+}
+
+.idea{
+	color: white;
+}
+
+
+.bottom{
+	position: relative;
+}
+
+.uhm{
+	background-color: #1a1a1a;
+	position: relative;
+	top: 10%;
+}
+
+
+ .footer {
+	position: relative;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index:0;
+	top:500px;
+	width:100%;
+	height:20%;
+	padding: 1rem;
+	background-color: #1a1a1a;
+	margin:0;
+	height: 94%;
+}
+
+ .bottombar {
+	overflow: hidden;
+	display: block;
+	background-color:#262626;
+	position:element(#footer);
+	position: relative;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	top:50px;
+	z-index:1;
+	width: 100%;
+	padding: 14px 16px;
+	height:6%;
+}
+
+.footertext1{
+	text-align:left;
+	color:white;
+	font-style: bold;
+	font-size:20px;
+	margin-left:50px;
+}
+
+.footertext2{
+	text-align:left;
+	color:white;
+	top:0.2px;
+	font-size:13px;
+	margin-left:50px;
+}
+
+.footertext3{
+	text-align:center;
+	position: element(#div3);
+	color:white;
+	font-style: bold;
+	top:1000px;
+	z-index:1;
+	 position: absolute;
+	font-size:20px;
+	margin-left:50px;
 }
