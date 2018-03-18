@@ -11,36 +11,133 @@
 
 	<div class = "profile col-12">
 
-		<div class = "col-12 breakrow"></div>
+		<div class = "col-2 break"></div>
+
+		<div class="col-8 mainProfileSpace">
+
+			<div id="description col-12">
+				<div class = "col-1 empty"></div>
+
+				<div class = "col-3">
+					<div class = "profilePicture">
+						<img src="Images-Results/prof-pic.png" class = "imgProfile">
+					</div>
+				</div>
+
+				<div class = "col-1 empty"></div>
+
+				<div class = "col-6">
+					<div class = "userDescription">
+						<div class = "username">One real traveler</div>
+						<div class = "countryAge">Romania, 20 years</div>
+						<div class = "dob">17 - March - 1997</div>
+					</div>
+				</div>
+
+				<div class = "col-1 empty"></div>
+			</div><!--end description div-->
+
+	
+	</div>
+</div>
+
+
+<div class = "profile col-12">
 
 		<div class = "col-2 break"></div>
 
 		<div class="col-8 mainProfileSpace">
-			<div class = "col-1"></div>
 
-			<div class = "col-3">
-				<div class = "profilePicture">
-					<img src="Images-Results/prof-pic.png" class = "imgProfile">
-				</div>
+			
+			<div id = "accountStatus">
+				<p>You've been through</p>
+				<p>4 countries</p>
+				<p>and got interested into</p>
+				<p>10 souvenirs</p>
 			</div>
 
-			<div class = "col-1"></div>
 
-			<div class = "col-6">
-				<div class = "userDescription">
+			<div class = "myItems">
+				
+				<div class = "country col-12">
+					<div class = "col-2 empty"></div>
 
-					<div class = "username">My Username</div><br>
-					<div class = "countryAge">Romania, 20 years</div><br>
-					<div class = "dob">17 - March - 1997</div>
+					<div class = "col-8">
+						<button class = "accordion col-12"> France </button>
+						<div class="panel col-12">
+						  <p>Many images will come here</p>
+						</div>
+					</div>
+
+					<div class = "col-2 empty"></div>
 				</div>
-			</div>
 
-			<div class = "col-1"></div>
-		</div>
+				<div class = "country col-12">
+					<div class = "col-2 empty"></div>
 
-		<div class="col-2"></div>
-	</div>
+					<div class = "col-8">
+						<button class = "accordion col-12"> Nederlands </button>
+						<div class="panel col-12">
+						  <p>Many images will come here</p>
+						</div>
+					</div>
+
+					<div class = "col-2 empty"></div>
+				</div>
+
+				<div class = "country col-12">
+					<div class = "col-2 empty"></div>
+
+					<div class = "col-8">
+						<button class = "accordion col-12"> Great Britain </button>
+						<div class="panel col-12">
+						  <p>Many images will come here</p>
+						</div>
+					</div>
+
+					<div class = "col-2 empty"></div>
+				</div>
+
+				<div class = "country col-12">
+					<div class = "col-2 empty"></div>
+
+					<div class = "col-8">
+						<button class = "accordion col-12"> Germany </button>
+						<div class="panel col-12">
+						  <p>Many images will come here</p>
+						</div>
+					</div>
+
+					<div class = "col-2 empty"></div>
+				</div>
+			</div><!--end myItems div-->
+
+		</div><!--end mainProfile div-->
+
+		<div class="col-2"></div>			
+
 	
+		</div>
+</div>
+
+	
+
+<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  });
+	}
+</script>
 
 </body>
 
