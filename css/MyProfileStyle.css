@@ -7,7 +7,7 @@ body{
 	background-color: #C6C9AA;
 	margin : 0px;
 	/*background:url("Images-Results/travel-wallpaper-blur-op.jpg") no-repeat center center fixed;*/
-	background:url("Images-Results/profileBackground59.jpg") no-repeat center center fixed;
+	background:url("../images/profileBackground59.jpg") no-repeat center center fixed;
 	background-size: cover;
 }
 
@@ -59,6 +59,68 @@ body{
 
 }
 
+@media only screen and (max-width: 1024px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    [class*="breakrow"]{
+    	display: none;
+    }
+
+    .profilePicture{
+		width: 30%;
+		height: 80%;
+		position: absolute;
+		left:20%;
+		top: 70px;
+	}
+
+    .imgProfile{
+	border-style: dashed;
+	border-color: darkred;
+}
+
+.userDescription{
+	position: absolute;
+	left: 500px;
+	width: 40%;
+	height: 20%;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 10px;
+	text-align: center;
+}
+
+.username{
+	font-size: 2em;
+	font-family: "Arial Black", Gadget, sans-serif; /*Verdana, Geneva, sans-serif;*/
+	position: relative;
+	height: 45%;
+	/*border: 1px solid yellow;   #72A75E*/
+	color: #3D8743;
+}
+
+.countryAge{
+	font-family: Arial, Helvetica, sans-serif;/*  "Lucida Console", Monaco, monospace;*/
+	font-size: 1.5em;
+	position: relative;
+	height: 35%;
+	/*border: 1px solid yellow;*/
+	color: #CBEFD6;
+}
+
+.dob{
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1em;
+	position: relative;
+	height: 20%;
+	/*border: 1px solid yellow;*/
+	color: #CBEFD6;
+}
+
+}
+
 /*iPhone 7
 @media only screen and(max-width: 450px)
 and (min-width: 0px){
@@ -79,26 +141,65 @@ and (min-width: 0px){
 }
 */
 
-/*iPad*/
-@media only screen and (max-width: 1024px)
-and (min-width: 960px){
-	.col-1 .empty{
-		display: none;
-	}
 
-	.profilePicture .col-3{
-		width: 100%;
-		position: relative;
-		left: 50%;
-	}
 
-	.imgProfile{
-		height: 50%;
-		align-content: center;
-		align-self: center;
-		align-items: center;
-	}
+#sidebar{
+	 position: fixed; 
+	 z-index: 1;
 }
+
+#sidebarSecond{
+	position: fixed;
+	display: none;
+}
+
+#pagewrapeer{
+	position: relative; 
+	z-index: 0;
+}
+
+.menu{
+	position: sticky;
+	left: 20px;
+	width: 50px;
+	top: 5px;
+	padding: 0px;
+	margin-left: 20px;
+	position: relative;
+}
+
+
+.zoom {
+    transition: transform .2s;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+     border-radius: 50px;
+    -webkit-box-shadow: -2px 2px 5px 0px #829486;
+    -moz-box-shadow: 2px 2px 5px 0px #829486;
+    box-shadow: -2px 2px 5px 0px #829486;
+}
+
+
+.icon{
+	width: 45px;
+	height: 45px;
+	display: block;
+    padding: 0px;
+    transform: translate( -50%, 10%);
+	-ms-transform: translate( -30%, -90%);
+	top: 20px;
+	left: 10px;
+}
+
+
+
 
 /*Etc*/
 
@@ -138,6 +239,7 @@ and (min-width: 960px){
 	background-color: lightblue;
 	position: absolute;
 }
+
 
 #accountStatus{
 	position: relative;
@@ -245,7 +347,7 @@ and (min-width: 960px){
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-image: url("Images-Results/black.png");
+    background-image: url("../images/black.png");
 
 }
 
