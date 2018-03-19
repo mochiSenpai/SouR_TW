@@ -6,7 +6,6 @@
 body{
 	background-color: #C6C9AA;
 	margin : 0px;
-	/*background:url("Images-Results/travel-wallpaper-blur-op.jpg") no-repeat center center fixed;*/
 	background:url("../images/profileBackground59.jpg") no-repeat center center fixed;
 	background-size: cover;
 }
@@ -58,6 +57,7 @@ body{
     }
 
 }
+
 
 @media only screen and (max-width: 1024px) {
     /* For mobile phones: */
@@ -142,7 +142,6 @@ and (min-width: 0px){
 */
 
 
-
 #sidebar{
 	 position: fixed; 
 	 z-index: 1;
@@ -200,6 +199,27 @@ and (min-width: 0px){
 
 
 
+/*iPad*/
+@media only screen and (max-width: 1024px)
+and (min-width: 960px){
+	.col-1 .empty{
+		display: none;
+	}
+
+	.profilePicture .col-3{
+		width: 100%;
+		position: relative;
+		left: 50%;
+	}
+
+	.imgProfile{
+		height: 50%;
+		align-content: center;
+		align-self: center;
+		align-items: center;
+	}
+}
+
 
 /*Etc*/
 
@@ -239,7 +259,6 @@ and (min-width: 0px){
 	background-color: lightblue;
 	position: absolute;
 }
-
 
 #accountStatus{
 	position: relative;
@@ -348,7 +367,6 @@ and (min-width: 0px){
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-image: url("../images/black.png");
-
 }
 
 .idea{
