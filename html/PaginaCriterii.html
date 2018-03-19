@@ -2,46 +2,117 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./StyleProiect.css">
+<link rel="stylesheet" href="C:\Users\bianca\Documents\GitHub\SouR_TW\css\PaginaCriteriiStyle.css">
 
 </head>
 
 
+	<div id = "sidebar" style="top:2%; left: 6%;">
+		<div>
+			<div><p class = "menu"><img src="../images/empty.png" class = "icon"></p></div>
+			<div><a href = "../html/MyProfile.html"><p class = "menu"><img src="../images/profile.png" class = "icon zoom"></p></a></div>
+			<div><a href = "../html/map-page.html"><p class = "menu"><img src="../images/search.png" class = "icon zoom"></p></a></div>
+			<div><a href = "../html/signup.html"><p class = "menu"><img src="../images/logout.png" class = "icon zoom"></p></a></div>
+		</div>
+	</div>
+
+	<div id = "sidebarSecond">
+		
+	</div>
 
 
-<div class="row">
-<div class="col-12"  >
- 
-  <img src="img2.jpg" >
-  </div>
+<div class="slideshow-container">
+<div class="mySlides fade">
+  
+  <img src="C:\Users\bianca\Documents\GitHub\SouR_TW\images\imag2.jpg"  style="width:100%">
+
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="C:\Users\bianca\Documents\GitHub\SouR_TW\images\img2.jpg" style="width:100%">
  
 </div>
+
+<div class="mySlides fade">
+  
+  <img src="C:\Users\bianca\Documents\GitHub\SouR_TW\images\imag1.jpg" style="width:100%">
+
+</div>
+
+
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+ 
+
+
+
  <div class="mob col-12"><h1>Make your custom choice</h1></div>
 
 <div class="row"> 
 <div class="div2 col-5">
 
   <form action="/action_page.php">
-    <label for="fname">Alege sezonul:</label>
+    <label for="fname">Choose a month:</label>
       <select id="month" name="month">
-      <option value="Ianuarie">Ianuarie</option>
-      <option value="Februarie">Februarie</option>
-      <option value="Martie">Martie</option>
-	  <option value="Aprilie">Aprilie</option>
-      <option value="Mai">Mai</option>
-      <option value="Iunie">Iunie</option>
-	  <option value="Iulie">Iulie</option>
+      <option value="Ianuarie">January</option>
+      <option value="Februarie">February</option>
+      <option value="Martie">March</option>
+	  <option value="Aprilie">April</option>
+      <option value="Mai">May</option>
+      <option value="Iunie">June</option>
+	  <option value="Iulie">July</option>
       <option value="August">August</option>
-      <option value="Septembrie">Septembrie</option>
-	  <option value="Octombrie">Octombrie</option>
-      <option value="Noiembrie">Noiembrie</option>
-      <option value="Decembrie">Decembrie</option>
+      <option value="Septembrie">September</option>
+	  <option value="Octombrie">October</option>
+      <option value="Noiembrie">November</option>
+      <option value="Decembrie">December</option>
 	</select>  
 	
-    <label for="fname">Introdu tipul de persoana:</label>
-    <input type="text" id="fname" name="username" placeholder="Bunic,copil,mama..">
+    <label for="fname">Insert a type of person:</label>
+    <input type="text" id="fname" name="username" placeholder="Child,Mother,Wife..">
 
-<label for="fname">Alege genul:</label> <br><br>
+<label for="fname">Gender:</label> <br><br>
   <input class="col-2" type="radio" name="gender" value="male" checked> Male<br>
   <input class="col-2" type="radio" name="gender" value="female"> Female <br><br>
 
@@ -58,7 +129,7 @@
 
 </div>
 
-
+</div>
 
 
 
@@ -66,8 +137,9 @@
 <div class="dropdown">
 <p>Contact</p>
       <div class="dropdown-content">
-      <p>Telefon:0767705960</p>
-      <p>Email:lalalal@gmail.com</p>
+      <p>Phone:0767705960</p>
+      <p>Email:SouR@gmail.com</p>
+	  <p>Adress:Iasi,Amurgului,11 </p>
 </div></div>
 
 
@@ -75,11 +147,11 @@
 <p>Contact</p>
 </div>
 <div class="footertext2">
-<p>Email: lalala@yahoo.com
+
+<p>Phone: 0233456789</p>
+<p>Email: SouR@gmail.com
 </p>
-<p>Telefon: 0767705960
-            0233456789</p>
-<p>Adresa: lalalalal </p>
+<p>Adress:Iasi,Amurgului,11 </p>
 
 </div>
 </div>
