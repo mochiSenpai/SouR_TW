@@ -198,7 +198,7 @@ margin-left:50px;}
   left: 0;
   top:58px;
   z-index:1;
-  height:6%;
+  height:10%;
   
 }
 
@@ -401,7 +401,7 @@ top:270px; padding-bottom:20px;
 }
 
 
-.footer{padding-bottom:15px;}
+.footer{padding-bottom:10px;}
 .footertext1{display:none;}
 .footertext2{display :none;}
 
