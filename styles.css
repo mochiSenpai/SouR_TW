@@ -4,7 +4,7 @@
 
 
 body{
-  background-image: url("background.jpg");
+  background-image: url("../images/MapPage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -18,20 +18,6 @@ body{
     font-family: mySecondFont;
     src: url(Redressed.ttf);
 }
-
-.topbar {
-  overflow: hidden;
-  top: 0;
-  /*position: absolute;
-  /*display: block;
-  /*width: 100%;*/
-  padding: 0;
-  height:60px;
-  font-family: myFirstFont;
-  list-style-type: none;
-  margin: 0;
-  font-size: 35px;
-} 
 
 .buton{
   float: left; 
@@ -57,6 +43,7 @@ h1{
     position: relative;
     max-width: 800px;
 }
+
 .container {
     position: relative;
     width: 100%;
@@ -137,7 +124,54 @@ h1{
   top: 160px;
 }
 
+
+.footer {
+ position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index:0;
+  top:70px;
+  height:20%;
+  background-color: #1a1a1a;
+  padding-bottom:5px;
+  margin:0;
+
+ }
+
+.footertext1{text-align:left;
+color:white;
+font-style: bold;
+font-size:20px;
+margin-left:50px;}
+
+.footertext2{text-align:left;
+color:white;
+top:0.2px;
+font-size:13px;
+margin-left:50px;}
+ 
+
+ .bottombar {
+  overflow: hidden;
+  display: block;
+  background-color:#262626;
+  position:element(#footer);
+  position: relative;
+  right: 5px;
+  bottom: 0;
+  left: 0;
+  top:58px;
+  z-index:1;
+  height:6%;
+  
+}
+
+
+
 @media only screen and (max-width: 620px){
+
+
 
 body{
   background:
@@ -208,6 +242,7 @@ body{
   position: absolute;
   left: 45px;
   top: 380px;
+  margin-bottom: 50px;
 }
 
 .container {
@@ -215,7 +250,8 @@ body{
     width: 100%;
     max-width: 100px;
     display: block;
-
+    margin-bottom: 50px;
+    margin: 50px;
 }
 
 .container .btn {
@@ -224,5 +260,126 @@ body{
     font-size: 25px;
     border-bottom: solid white
 }
+
+ .footer{
+  top:450px;
+  padding-bottom:20px;
+  bottom:0;
+}
+.bottombar{
+  top:450px;
+  bottom:0;
+}
+
+}
+
+@media only screen and (min-width: 412px) and (max-width: 731px){
+
+ .footer {
+  top:500px;
+  padding-bottom:20px;
+
+ }
+
+ .bottombar{
+  top:500px;
+ }
+
+
+}
+
+
+@media only screen and (min-width: 375px) and (max-width: 811px){
+
+ .footer {
+  top:560px;
+  padding-bottom:20px;
+
+ }
+
+ .bottombar{
+  top:560px;
+ }
+
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+
+.spania{
+  position: absolute; 
+  left: 150px; 
+  top: 600px;
+}
+.franta{
+  position: absolute;
+  left: 280px;
+  top: 480px;
+}
+
+.italia{
+  position: absolute;
+  left: 450px;
+  top: 580px;
+}
+
+.romania{
+  position: absolute;
+  left: 650px;
+  top: 480px;
+}
+
+.uk{
+  position: absolute;
+  left:260px;
+  top:350px;
+}
+
+.germania{
+  position: absolute;
+  left: 410px;
+  top:400px;
+}
+
+.norvegia{
+  position: absolute;
+  left: 420px;
+  top: 200px;
+}
+
+.suedia{
+  position: absolute;
+  left: 500px;
+  top: 210px;
+}
+
+.finlanda{
+  position: absolute;
+  left: 600px;
+  top: 160px;
+}
+
+.footer{
+
+  padding-bottom:20px;
+  bottom:0;
+}
+.bottombar{
+  bottom:0;
+}
+
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1365px){
+
+ .footer {
+  top:370px;
+  padding-bottom:20px;
+
+ }
+
+ .bottombar{
+  top:370px;
+ }
 
 }
