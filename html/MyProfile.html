@@ -2,25 +2,46 @@
 
 <head>
 	<title> My Profile </title>
-	<link rel="stylesheet" type="text/css" href="MyProfileStyle.css">
+
+	<link rel="stylesheet" type="text/css" href="../css/MyProfileStyle.css">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<div class="topbar col-12"></div>
+
+	<!--********************************* STICKY TOPBAR **************************-->
+
+	<div id = "sidebar" style="top:2%; left: 6%;">
+		<div>
+			<div><p class = "menu"><img src="../images/empty.png" class = "icon"></p></div>
+			<div><a href = "../html/MyProfile.html"><p class = "menu"><img src="../images/profile.png" class = "icon zoom"></p></a></div>
+			<div><a href = "../html/map-page.html"><p class = "menu"><img src="../images/search.png" class = "icon zoom"></p></a></div>
+			<div><a href = "../html/signup.html"><p class = "menu"><img src="../images/logout.png" class = "icon zoom"></p></a></div>
+		</div>
+	</div>
+
+	<div id = "sidebarSecond">
+		
+	</div>
+
+	<!--******************************* STICKY TOPBAR END **************************-->
+
 
 	<div class = "profile col-12">
 
 		<div class = "col-2 break"></div>
 
-		<div class="col-8 mainProfileSpace">
 
-			<div id="description col-12">
-				<div class = "col-1 empty"></div>
+		<div class="mainProfileSpace col-8 ">
+
+			<div id="description" class = "col-12">
+				<div class = "col-2 empty"></div>
 
 				<!--<div class = "col-3">-->
-					<div class = "profilePicture col-3">
-						<img src="Images-Results/prof-pic.png" class = "imgProfile">
+					<div class = "profilePicture col-2">
+						<img src="../images/prof-pic.png" class = "imgProfile">
+
 					</div>
 				<!--</div>-->
 
