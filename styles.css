@@ -138,6 +138,18 @@ h1{
 }
 
 @media only screen and (max-width: 620px){
+
+body{
+  background:
+  linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("altfundal.jpg");
+  color: white;
+   background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0px;
+}
+
+
   .responsive{
   display: none;
 }
@@ -145,56 +157,57 @@ h1{
 
 .spania{
   position: absolute; 
-  left: 10px; 
+  left: 45px; 
   top: 60px;
+
 }
 
 .franta{
   position: absolute;
-  left: 100px;
-  top: 60px;
+  left: 45px;
+  top: 100px;
 }
 
 .italia{
   position: absolute;
-  left: 10px;
-  top: 100px;
+  left: 45px;
+  top: 140px;
 }
 
 .romania{
   position: absolute;
-  left: 100px;
-  top: 100px;
+  left: 45px;
+  top: 180px;
 }
 
 .uk{
   position: absolute;
-  left:10px;
-  top:140px;
+  left:45px;
+  top:220px;
 }
 
 .germania{
   position: absolute;
-  left: 100px;
-  top:140px;
+  left: 45px;
+  top:260px;
 }
 
 .norvegia{
   position: absolute;
-  left: 10px;
-  top: 180px;
+  left: 45px;
+  top: 300px;
 }
 
 .suedia{
   position: absolute;
-  left: 100px;
-  top: 180px;
+  left: 45px;
+  top: 340px;
 }
 
 .finlanda{
   position: absolute;
   left: 45px;
-  top: 220px;
+  top: 380px;
 }
 
 .container {
@@ -202,12 +215,14 @@ h1{
     width: 100%;
     max-width: 100px;
     display: block;
+
 }
 
 .container .btn {
-
+    color: white;
     padding: 10px 10px;
     font-size: 25px;
+    border-bottom: solid white
 }
 
 }
