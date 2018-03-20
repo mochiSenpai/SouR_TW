@@ -59,15 +59,16 @@ body{
 }
 
 
-@media only screen and (max-width: 1023px) and (min-width: 460px) {
-    /* For mobile phones: */
-    [class*="col-"] {
+
+@media only screen and (max-width: 1023px ) and (min-width: 768px){
+ [class*="col-"] {
         width: 100%;
     }
 
     [class*="breakrow"]{
     	display: none;
     }
+
 
     .profilePicture{
 		width: 30%;
@@ -84,7 +85,7 @@ body{
 
 .userDescription{
 	position: absolute;
-	left: 500px;
+	left: 200px;
 	width: 40%;
 	height: 20%;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -117,6 +118,56 @@ body{
 	height: 20%;
 	/*border: 1px solid yellow;*/
 	color: #CBEFD6;
+}
+
+}
+
+
+@media only screen and (max-width: 767px) and (min-width: 200px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    [class*="breakrow"]{
+    	display: none;
+    }
+
+    .profilePicture{
+		width: 30%;
+		height: 80%;
+		position: absolute;
+		left:32%;
+		top: 70px;
+	}
+
+    .imgProfile{
+	border-style: dashed;
+	border-color: darkred;
+}
+
+.userDescription{
+	position: absolute;
+	
+	top: 190px;
+	width: 100%;
+	height: 20%;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 10px;
+	text-align: center;
+}
+
+
+#accountStatus{
+	position: relative;
+	top: 180px;
+	width: 100%;
+}
+
+#myItems{
+	position: relative;
+	top: 200px;
+	width: 100%;
 }
 
 }
