@@ -136,28 +136,47 @@ input[type=submit]:hover {
   box-sizing: border-box;   
 }
 
-.footer{
-  background-color: #1a1a1a;
-  position: relative;
+.
+.footer {
+ position: relative;
+  right: 0;
   bottom: 0;
-  width: 100%;
-}
+  left: 0;
+  z-index:0;
+  top:70px;
+  height:20%;
+  background-color: #1a1a1a;
+  padding-bottom:5px;
+  margin:0;
 
+ }
 
-.footertext1{
-  bottom: 0px;
-  text-align:left;
-  color:white;
-  font-style: bold;
-  font-size:20px;
-  margin-left:50px;
-}
+.footertext1{text-align:left;
+color:white;
+font-style: bold;
+font-size:20px;
+margin-left:50px;}
 
-.footertext2{
-  text-align:left;
-  color:white;
-  font-size:13px;
-  margin-left:50px;
+.footertext2{text-align:left;
+color:white;
+top:0.2px;
+font-size:13px;
+margin-left:50px;}
+ 
+
+ .bottombar {
+  overflow: hidden;
+  display: block;
+  background-color:#262626;
+  position:element(#footer);
+  position: relative;
+  right: 5px;
+  bottom: 0;
+  left: 0;
+  top:58px;
+  z-index:1;
+  height:6%;
+  
 }
 
 
@@ -216,13 +235,16 @@ body{
 }   
 
 
-@media only screen and (min-width: 768px) and (max-width: 1365px) {
+@media only screen and (min-width: 1024px) and (max-width: 1365px){
 
+ .footer {
+  top:370px;
+  padding-bottom:20px;
 
-.footer{
-  position: absolute;
-  bottom: 0px;
+ }
+
+ .bottombar{
+  top:370px;
+ }
+
 }
-}
-
-

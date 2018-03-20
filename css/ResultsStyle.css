@@ -42,6 +42,39 @@ body{
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+.wrapper {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  -webkit-transform: translate(-50%,-50%);
+}
+
+h1 a {
+  color: #fff;
+  font-size: 100%;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  font-family: 'Dosis', sans-serif;
+}
+
+/*effect-underline*/
+a.effect-underline:after {
+	content: '';
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  border-bottom: 2px solid;
+  margin-top: 10px;
+  opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale(0,1);
+	transform: scale(0,1);
+}
 
 @media only screen and (max-width:1025px) and (min-width: 1024px) {
 	.empty{
@@ -296,7 +329,46 @@ body{
 
 
 
+.wrapper {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  -webkit-transform: translate(-50%,-50%);
+}
 
+h1 a {
+  color: #fff;
+  font-size: 90%;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  font-family: 'Dosis', sans-serif;
+}
+
+/*effect-underline*/
+a.effect-underline:after {
+	content: '';
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  border-bottom: 2px solid;
+  margin-top: 10px;
+  opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale(0,1);
+	transform: scale(0,1);
+}
+
+a.effect-underline:hover:after {
+  opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	color:pink;
+}
 
 
 .dropdown{
