@@ -12,14 +12,17 @@ body{
 }
 @font-face {
     font-family: myFirstFont;
-    src: url(snoopy_reg-webfont.otf);
+    src: url(../fonts/snoopy_reg-webfont.otf);
 }
 @font-face {
     font-family: mySecondFont;
-    src: url(Redressed.ttf);
+    src: url(../fonts/Redressed.ttf);
 }
 
-
+h1
+{
+  font-family: myFirstFont;
+}
 
 #sidebar{
    position: fixed; 
