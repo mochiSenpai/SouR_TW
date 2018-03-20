@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    cursor: url(NormalSelect.cur), default;
+    /*cursor: url(NormalSelect.cur), default;*/
 }
 
 body{
@@ -59,7 +59,7 @@ body{
 }
 
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) and (min-width: 460px) {
     /* For mobile phones: */
     [class*="col-"] {
         width: 100%;
@@ -121,26 +121,6 @@ body{
 
 }
 
-/*iPhone 7
-@media only screen and(max-width: 450px)
-and (min-width: 0px){
-
-    [class*="username"]{
-    	font-size: 75%;
-    }
-
-    .profilePicture{
-		width: 100%;
-		align-items: center;
-	}
-
-    .imgProfile{
-		height: 50%;
-		align-self: center;
-	}
-}
-*/
-
 
 #sidebar{
 	 position: fixed; 
@@ -199,24 +179,89 @@ and (min-width: 0px){
 
 
 
-/*iPad*/
-@media only screen and (max-width: 1024px)
-and (min-width: 960px){
+/*iPad Pro*/
+@media only screen and (max-width:1025px) and (min-width: 1024px){
+	body{
+		background:url("../images/profileBackground59.jpg") no-repeat center center fixed;
+	}
+
 	.col-1 .empty{
 		display: none;
 	}
 
-	.profilePicture .col-3{
-		width: 100%;
-		position: relative;
-		left: 50%;
+	.profilePicture{
+		/*border: 1px solid pink;*/
+		height: 80%;
+		width: 27%;
+		position: absolute;
+		left: 220px;
+		top:65px;
+	}
+
+	.userDescription{
+		/*border: 1px solid yellow;*/
+		position: absolute;
+		left: 200px;
+		top: 30px;
+		height: 25%;
 	}
 
 	.imgProfile{
-		height: 50%;
-		align-content: center;
-		align-self: center;
-		align-items: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	.username{
+		font-size: 2em;
+	}
+
+	.countryAge{
+		font-size: 1.5em;
+	}
+
+	.dob{
+		font-size: 1em;
+	}
+}
+
+/*iPad*/
+@media only screen and (max-width:1023px) and (min-width: 768px){
+	.col-1 .empty{
+		display: none;
+	}
+
+	.profilePicture{
+		/*border: 1px solid pink;*/
+		height: 80%;
+		width: 27%;
+		position: absolute;
+		left: 150px;
+		top:85px;
+	}
+
+	.userDescription{
+		/*border: 1px solid yellow;*/
+		position: absolute;
+		left: 350px;
+		top: 45px;
+		height: 25%;
+	}
+
+	.imgProfile{
+		width: 100%;
+		height: 100%;
+	}
+
+	.username{
+		font-size: 2em;
+	}
+
+	.countryAge{
+		font-size: 1.5em;
+	}
+
+	.dob{
+		font-size: 1em;
 	}
 }
 
@@ -443,3 +488,115 @@ and (min-width: 960px){
 	font-size:20px;
 	margin-left:50px;
 }
+
+
+
+.footer {
+ position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+z-index:0;
+top:50px;
+  height:30%;
+  background-color: #1a1a1a;
+  padding-bottom:5px;
+margin:0;
+
+ }
+
+
+
+
+
+.footertext1{text-align:left;
+color:white;
+font-style: bold;
+font-size:20px;
+margin-left:50px;}
+
+.footertext2{text-align:left;
+color:white;
+top:0.2px;
+font-size:13px;
+margin-left:50px;}
+ 
+
+ .bottombar {
+  overflow: hidden;
+  display: block;
+  background-color:#262626;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  top:16px;
+  z-index:1;
+  height:5%;
+  
+}
+.dropdown{display:none;}
+
+
+
+
+@media only screen and (max-width:1024px) {
+.footer {
+	top:270px;
+	height:15%;
+ }
+
+ .footertext1{
+	font-size:23px;
+}
+
+.footertext2{font-size:20px;}
+
+.bottombar {
+	top:270px;
+  	height:3%;
+}
+
+
+}
+
+
+ @media only screen and (max-width:800px) {
+    
+
+.footer{
+	padding-bottom:10px;
+	height:70px;
+}
+.bottombar{
+	height:4%;
+	padding-bottom:2px;
+}
+.footertext1 .p{
+	font-size:25px;
+	padding-bottom:2px;
+}
+
+.footertext1{display:none;}
+
+.footertext2{display :none;}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+	color:grey;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    bottom:50px;
+    border:4px;
+	border-radius: 5px;
+    z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+ }}
+

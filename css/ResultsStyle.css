@@ -43,8 +43,15 @@ body{
 .col-12 {width: 100%;}
 
 
-@media only screen and (max-width:1366px) {
-	
+@media only screen and (max-width:1025px) and (min-width: 1024px) {
+	.empty{
+		display: none;
+	}	
+
+	.option{
+		width: 40%;
+		left: 90px;
+	}
  }
 
 @media only screen and (max-width: 960px) {
@@ -63,7 +70,7 @@ body{
     
 
     #sidebar{
-    	display: none;
+    	/*display: none;*/
     }
 
     #sidebarSecond{
@@ -321,11 +328,7 @@ top:50px;
   background-color: #1a1a1a;
   padding-bottom:5px;
 margin:0;
-
- }
-
-
-
+}
 
 
 .footertext1{text-align:left;
