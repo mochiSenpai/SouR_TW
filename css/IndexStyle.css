@@ -24,7 +24,7 @@
 }
 
 body{
-  background-image: url("../images/SignUpPage.jpg");
+  background-image: url("../images/firstPage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
@@ -178,11 +178,11 @@ input[type=submit]:hover {
 
 body{
   background:
-  linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("firstPage.jpg");
+  linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("../images/firstPage.jpg");
 }
 
  .div1 {
-  width: 90%;
+  width: 80%;
   margin-left: 20px;
   margin-right: 15px;
   margin-bottom: 10px;
@@ -199,10 +199,11 @@ body{
  }
 
 .fl{
+  width: 100%;
   /*margin-left: 75px;
   margin-right: 15px;*/
  display: block;
-
+ padding: 0;
 }
 
 
