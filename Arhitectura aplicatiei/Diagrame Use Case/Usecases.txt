@@ -1,0 +1,40 @@
+Adaugare suvenir
+
+Atunci cand administratorul aplicatiei(adminul) va dori sa adauge o noua sugestie se va conecta la baza de date si va trebui sa insereze, pe rand, informatii in urmatoarele tabele:
+-Countries(tara si id-ul noului suvenir)
+-Souvenirs(numele, pretul, calea spre o fotografie)
+-Categories(categoria de varsta careia ii este adresat suvenirul, genul persoanelor potrivite si perioada anului in care este cel mai usor de gasit).
+Daca in baza de date nu mai este niciun suvenir cu acelasi nume acesta va fi inserat, in caz contrar adminul va trebui sa redenumeasca sugestia.
+
+Stergere suvenir
+
+Atunci cand adiminul observa ca una din sugestii are un rating mic poate alege sa o stearga. Acest lucru este posibil accesand baza de date si stergand, pe rand, informatii din urmatoarele tabele:
+-Categories(categoria de varsta, genul si perioada)
+-Souvenirs(numele, pretul, fotografia)
+-Countries(id-ul).
+Daca toate datele au fost sterse corect suvenirul nu va mai aparea nici in baza de date si, automat, nici pe pagina de rezultate a aplicatiei.
+
+
+Sing up
+
+Utilizatorul neinregistrat va intra pe prima pagina a aplicatiei si va trebui sa completeze formularul ce contine:
+-nume de utilizator
+-parola
+-tara de origine
+-data nasterii.
+Aceste date vor fi transmise bazei de date ce va verifica daca numele de utilizator a mai fost folosit(in acest caz il va informa pe utilizator ca trebuie sa isi aleaga un alt nume) si daca parola este destul de puternica(si in acest caz utilizatorul va primi un mesaj in care i se va cere sa foloseasca o parola mai puternica). Dupa ce toate aceste informatii au fost verificate si validate, utilizatorul va fi inregistrat in baza de date cu toate informatiile introduse si va fi directionat spre urmatoarea pagina din aplicatie.
+
+Log in
+
+Utilizatorul va accesa pagina principala a aplicatiei unde va putea sa introduca numele de utilizator si parola cu care s-a inregistrat initial. Datele introduse vor fi trimise catre baza de date si verificate. Daca acestea sunt corecte utilizatorul va fi directionat spre urmatoarea pagina a aplicatiei. In caz contrar se va afisa un mesaj care il informeaza pe utilizator ca numele sau parola au fost introduse gresit si trebuie sa incerce din nou.
+
+
+Custom Choice
+
+Odata ce este logat utilizatorul va putea sa introduca date care vor duce la rezultate mai bune si specifice pentru nevoile sale. Prima pagina pe care va intra dupa ce se va loga ii va permite sa aleaga tara in care va calatori, dupa care cateva informatii ce vor duce la rezultate mai precise:
+-genul
+-tipul de persoana
+-perioada anului in care va calatori.
+Odata ce aceste informatii sunt preluate vor fi trimise spre baza de date si se va genera pagina de rezultate potrivita datelor primite.
+
+
