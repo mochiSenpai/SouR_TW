@@ -92,25 +92,25 @@ function showSlides(n) {
 <div class="row"> 
 <div class="div2 col-5">
 
-  <form action="../html/Results.html">
+  <form action="../php/resultDetails.php" method = "post">
     <label for="fname">Choose a month:</label>
       <select id="month" name="month">
-      <option value="Ianuarie">January</option>
-      <option value="Februarie">February</option>
-      <option value="Martie">March</option>
-	  <option value="Aprilie">April</option>
-      <option value="Mai">May</option>
-      <option value="Iunie">June</option>
-	  <option value="Iulie">July</option>
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+	  <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+	  <option value="July">July</option>
       <option value="August">August</option>
-      <option value="Septembrie">September</option>
-	  <option value="Octombrie">October</option>
-      <option value="Noiembrie">November</option>
-      <option value="Decembrie">December</option>
+      <option value="September">September</option>
+	  <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
 	</select>  
 	
     <label for="fname">Insert a type of person:</label>
-    <input type="text" id="fname" name="username" placeholder="Child,Mother,Wife..">
+    <input type="text" id="fname" name="personType" placeholder="Child,Mother,Wife..">
 
 <label for="fname">Gender:</label> <br><br>
   <input class="col-2" type="radio" name="gender" value="male" checked> Male<br>
