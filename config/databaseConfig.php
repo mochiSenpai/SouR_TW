@@ -9,4 +9,9 @@ $mysql_host = 'db4free.net:3306/';
 
 $dbconn = new mysqli($mysql_host, $mysql_user, $mysql_pass, $mysql_db) or die($conn_error);
 
+
+if (mysqli_connect_errno()) {
+	die ('Conexiunea a esuat...');
+}
+
 ?>
