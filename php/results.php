@@ -2,7 +2,6 @@
 <?php
 
 require '../config/databaseConfig.php';
-//require '../php/resultDetails.php';
 
 $countryID = $_GET['countryID'];
 $monthValue = $_GET['month'];
@@ -20,15 +19,46 @@ $query = "SELECT * FROM souvenirs WHERE
 				
 
 $data = mysqli_query($dbconn,$query);
+
+$itemsID = array();
+$counter = 0;
+
 /*
 echo 'countryID = ' . $countryID;
 echo '<br>monthValue = ' . $monthValue;
 echo '<br>personType = ' . $personType;
 echo '<br>personGender = ' . $personGender;
 */
+
+if(isset($_POST['add'])){
+	add($_POST['add']);
+}
+
+function add($val){
+	require '../config/databaseConfig.php';
+	$suvID = intval($val);
+
+	//$newIDQuery = "SELECT COUNT(*) AS 'total' FROM choices WHERE id_user = 1";
+	$result = mysqli_query($dbconn,"SELECT count(*) as total from choices");
+	$data = mysqli_fetch_assoc($result);
+	//echo 'New ID = '.$data['total'] . '<br><br>';
+
+	$newID = intval($data['total'] + 1);
+
+	$insertQuery = "INSERT INTO `choices`(`id`, `id_user`, `id_souvenir`) VALUES (". $newID .",1," . $suvID . ")";
+	//echo $insertQuery;
+	$result = mysqli_query($dbconn,$insertQuery);
+	/*if($result){
+		echo '<br>Data inserted';
+	}else{
+		echo '<br><br>Insert FAILED';
+	}*/
+
+}
+
 ?>
 
-<hmtl>
+<html>
 
 <head>
 	<title> Results </title>
@@ -36,8 +66,8 @@ echo '<br>personGender = ' . $personGender;
 	<link rel="stylesheet" type="text/css" href="../css/ResultsStyle.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 
+</head>
 
 <body>
 
@@ -79,6 +109,9 @@ echo '<br>personGender = ' . $personGender;
 
 <?php 
 	while($row = mysqli_fetch_array($data)){
+		$itemsID[$counter] = $row['id'];
+		$counter = $counter + 1;
+
 		$title = $row['name'];
 		$itemDesc = $row['description'];
 		$price = $row['price'];
@@ -91,17 +124,23 @@ echo '<br>personGender = ' . $personGender;
 			<div class = "itemTitle"> <?php echo $title?> </div>
 			<div class = "itemDescription"> <?php echo $itemDesc?></div>
 			<div class="priceTxt"><?php echo $price?> $</div>
-				<button class = "button">
+			<form action = "<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+				<button onclick="add()" class = "button" name = "add" value = "
+				<?php echo $itemsID[$counter - 1]; ?>" >
 
 					<div class = "buttonText">I'd like this!</div>
 
 				</button>
+			</form>
 
 		</div>
 
 		
 	<?php
 		if($row = mysqli_fetch_array($data)){
+			$itemsID[$counter] = $row['id'];
+			$counter = $counter + 1;
+
 			$title = $row['name'];
 			$itemDesc = $row['description'];
 			$price = $row['price'];
@@ -114,20 +153,23 @@ echo '<br>personGender = ' . $personGender;
 			<div class = "itemTitle"> <?php echo $title?> </div>
 			<div class = "itemDescription"> <?php echo $itemDesc?></div>
 			<div class="priceTxt"><?php echo $price?> $</div>
-				<button class = "button">
+				<form action = "<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+				<button onclick="add()" class = "button" name = "add" value = "
+				<?php echo $itemsID[$counter - 1]; ?>" >
 
 					<div class = "buttonText">I'd like this!</div>
 
 				</button>
+			</form>
 
 			</div>
 		<?php } ?> 
 
 		<div class="col-12 breakrow"></div>
-<?php } ?> 
-	
-<!------- ANOTHER ROW OF IMAGES -------->
+		<div class="row"> 
 
+<div class="col-2 empty"></div>
+<?php } ?> 
 
 </div>
 
