@@ -2,11 +2,12 @@
 <?php
 
 require '../config/databaseConfig.php';
-require '../php/resultDetails.php';
+//require '../php/resultDetails.php';
 
-if(isset($_GET['country'])){
-	$countryID = intval($_GET['country']);
-}.
+$countryID = $_GET['countryID'];
+$monthValue = $_GET['month'];
+$personType = $_GET['personType'];
+$personGender = $_GET['gender'];
 
 $query = "SELECT * FROM souvenirs WHERE 
 				country_id = '{$countryID}' AND 
@@ -19,7 +20,12 @@ $query = "SELECT * FROM souvenirs WHERE
 				
 
 $data = mysqli_query($dbconn,$query);
-
+/*
+echo 'countryID = ' . $countryID;
+echo '<br>monthValue = ' . $monthValue;
+echo '<br>personType = ' . $personType;
+echo '<br>personGender = ' . $personGender;
+*/
 ?>
 
 <hmtl>

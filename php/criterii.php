@@ -1,8 +1,16 @@
 <?php
+  $countryID = 3;
 
-if(isset($_GET['countryID'])){
-  $ID = intval($_GET['countryID']);
-}
+  if(isset($_GET['countryID'])){
+    $countryID = intval($_GET['countryID']);
+  }
+
+      if(isset($_POST['month'], $_POST['personType'], $_POST['gender'])){
+      $url = '../php/results.php?countryID='. $countryID . '&month=' . $_POST['month'] . '&personType=' . $_POST['personType'] . '&gender=' . $_POST['gender'];
+      header('Location: '. $url);
+
+      exit();
+    }
 
 ?>
 
@@ -100,25 +108,25 @@ function showSlides(n) {
 <div class="row"> 
 <div class="div2 col-5">
 
-  <form action="../php/results.php?countryID='$ID'" method = "post">
+  <form  method = "post">
     <label for="fname">Choose a month:</label>
       <select id="month" name="month">
       <option value="1">January</option>
       <option value="2">February</option>
       <option value="3">March</option>
-	  <option value="4">April</option>
+	    <option value="4">April</option>
       <option value="5">May</option>
       <option value="6">June</option>
-	  <option value="7">July</option>
+	    <option value="7">July</option>
       <option value="8">August</option>
       <option value="9">September</option>
-	  <option value="10">October</option>
+	    <option value="10">October</option>
       <option value="11">November</option>
       <option value="12">December</option>
 	</select>  
 	
     <label for="fname">Insert age of person:</label>
-    <input type="text" id="fname" name="personType" placeholder="Age...">
+    <input type="text" id="fname" name="personType" placeholder="Age">
 
 <label for="fname">Gender:</label> <br><br>
   <input class="col-2" type="radio" name="gender" value="1" checked> Male<br>
