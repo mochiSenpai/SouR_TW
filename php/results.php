@@ -93,13 +93,37 @@ function add($val){
 
 <div id = "pagewrapper">
 
-<div class="col-12 breakrow"></div>
+<?php 
 
-<center>
-<div class="col-12">
-	<h1 id="resTitleText" align="center"><a href="#" class="effect-underline">You may want to consider...</a></h1>
-</div>
-</center>
+	$num_rows = mysqli_num_rows($data);
+
+	if($num_rows == 0){
+		?>
+		<div class="col-12 breakrow"></div>
+		<div class="col-12 breakrow"></div>
+		<div class="col-12 breakrow"></div>
+		<center>
+		<div class="col-12">
+			<h1 id="resTitleText" align="center"><a href="#" class="effect-underline">Unfortulately... <br> we found no matches for your requirements :(</a></h1>
+		</div>
+		</center>
+
+		<?php
+		exit();
+	}else{ ?>
+		<div class="col-12 breakrow"></div>
+		<center>
+		<div class="col-12">
+			<h1 id="resTitleText" align="center"><a href="#" class="effect-underline">You may want to consider...</a></h1>
+		</div>
+		</center>
+<?php
+
+	}
+?>
+
+
+
 
 <div class="col-12 breakrow"></div>
 
