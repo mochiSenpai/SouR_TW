@@ -1,3 +1,11 @@
+>?php
+
+session_start();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +34,8 @@
         <div  class="div1">
             <div class="title" style="font-size: 10px">Don't have an account yet?</div>
             <div class="title"><p>Sign up </p></div>
-            <form action="../html/map-page.html">
+            
+            <form action="../php/profile.php" method="POST">
                 <label for="fname">Username:</label>
                 <input style="width: 350px" type="text" id="fname" name="username" placeholder="username..">
                 <label for="lname">Password:</label>
@@ -69,7 +78,8 @@
       <div class="col-12">
         <div class="col-1"></div>
         <div class="col-10">
-         <form action="../html/map-page.html">
+
+         <form action="../php/profile.php" method="POST">
         <div class="fl"><input style="width: 100%" type="text" id="fname" name="username" placeholder="username.."></div>
         <div class="fl" ><input style="width: 100%" type="password" id="lname" name="password" placeholder="password.."></div>
         <div class="fl"><input style="width: 100%" type="submit" value="Login"></div>
