@@ -1,11 +1,18 @@
 <?php
 
 require '../config/databaseConfig.php';
+session_start();
 
-$userBasicDataQuery = "SELECT * FROM users WHERE username = 'megitsune'"; //de preluat din cookie/sesiune
+$user = $_SESSION['username'];
+echo "\n\n\n";
+echo $user;
+
+$userBasicDataQuery = "SELECT * FROM users WHERE trim(username) = \"".$user."\""; //de preluat din cookie/sesiune
 $userBasicData = mysqli_query($dbconn, $userBasicDataQuery);
 //echo mysqli_num_rows($userBasicData);
-$userrow = mysqli_fetch_array($userBasicData);
+$userrow = mysqli_fetch_assoc($userBasicData);
+
+
 
 //echo $userrow['country_id'];
 
@@ -25,11 +32,11 @@ $country = $countryrow['name'];
 $profilePictureId = $userrow['profilePic_id'];
 
 
-$visitedCountriesQuery = "SELECT DISTINCT country_id from choices c join souvenirs s on c.id_souvenir = s.id WHERE c.id_user = 1";
+$visitedCountriesQuery = "SELECT DISTINCT country_id from choices c join souvenirs s on c.id_souvenir = s.id WHERE c.id_user = ".$userrow['id'];
 $visitedCountries = mysqli_query($dbconn, $visitedCountriesQuery);
 $countriesCount = mysqli_num_rows($visitedCountries);
 
-$likedItemsQuery = "SELECT * FROM choices WHERE id_user = 1";
+$likedItemsQuery = "SELECT * FROM choices WHERE id_user =".$userrow['id'];
 $likedItems = mysqli_query($dbconn, $likedItemsQuery);
 $likedItemsCount = mysqli_num_rows($likedItems);
 

@@ -49,7 +49,7 @@ if (count($errors) == 0) {
 			$newbirthday = date('Y-m-d', $time);
 
 			
-			$query = "INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES (". $newID .", \"". $username ." \", \" ". $hashedPwd . " \" , " . $country . " , \"" . $newbirthday ." \", 1)";
+			$query = "INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES (". $newID .", \"". $username ." \", \" ". $hashedPwd . " \" , " . $country . " , \"" . $newbirthday ." \", 3)";
 
 			
 			$data = mysqli_query($dbconn,$query);
@@ -59,13 +59,14 @@ if (count($errors) == 0) {
 	}else{
 		echo '<br><br>Insert FAILED';
 	}*/
+			$_SESSION['username'] = $username;
 			header('Location: ../php/profile.php');
 			}
 		}
 
 	
 	
-	//$_SESSION['username'] = $username;
+	
 	
 
 
