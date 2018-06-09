@@ -48,8 +48,14 @@ if (count($errors) == 0) {
 			$time = strtotime($bday);
 			$newbirthday = date('Y-m-d', $time);
 
+			$picQuery = mysqli_query($dbconn, "SELECT count(*) as picId from profilePictures;");
 			
-			$query = "INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES (". $newID .", \"". $username ." \", \" ". $hashedPwd . " \" , " . $country . " , \"" . $newbirthday ." \", 3)";
+			$data = mysqli_fetch_assoc($picQuery);
+	
+
+			$profilePic = rand(1, intval($data['picId']));
+			
+			$query = "INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES (". $newID .", \"". $username ." \", \" ". $hashedPwd . " \" , " . $country . " , \"" . $newbirthday ." \",".$profilePic." )";
 
 			
 			$data = mysqli_query($dbconn,$query);
@@ -64,9 +70,6 @@ if (count($errors) == 0) {
 			}
 		}
 
-	
-	
-	
 	
 
 
