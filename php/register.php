@@ -12,10 +12,9 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $country = $_POST['country'];
 $bday = $_POST['bday'];
-
 $result = mysqli_query($dbconn,"SELECT count(*) as total from users");
 $data = mysqli_fetch_assoc($result);
-	
+
 
 $newID = intval($data['total'] + 1);
 //CHeck if it is not empty
@@ -33,10 +32,11 @@ $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){ array_push($errors, "Username is alrady used. Please choose another one");}
 
+
 if (count($errors) == 0) {
 			//hashing the password
-			$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-
+			//$hashedPwd = trim(password_hash($pass, PASSWORD_DEFAULT));
+$hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 			//$_SESSION['id'] = $row['id'];
 			//insert the user
 			/*echo $newID;
@@ -71,7 +71,6 @@ if (count($errors) == 0) {
 		}
 
 	
-
 
 ?>
 
@@ -131,18 +130,7 @@ if (count($errors) == 0) {
             </form>
         </div>
       </div>
-      <div class="col-1"></div>
-    </div>
-<div class=" footer col-12" >
-      <div class="footertext1">
-      <p>Contact</p>
-      <p>Phone: 0233456789</p>
-      <p>Email: SouR@gmail.com</p>
-      <p>Adress:Iasi,Amurgului,11 </p>
-     <center> <div class="bottombar">@Copyright2018</div></center> 
-   </div>
-</div>
-  </div>
+
 
 </body>
 </html> 

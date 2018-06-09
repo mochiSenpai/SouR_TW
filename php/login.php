@@ -29,34 +29,23 @@ if(isset($_POST['login']))   // it checks whether the user clicked login button 
 echo $row[0];
 echo $row[1];
   
-  $verify=password_verify($pass,$row[1]);
-  echo $verify;
+
   
-  
-if(password_verify($pass,$row["password"])!=0)
+if(password_verify(trim($pass),trim($row["password"])))
 	{
 			
-			$var= "correct";
-			
-			} else {
-			
-			$var= "Nume utilizator sau parola gresita";
-			}
-
-$var = '<div style="position:absolute; bottom:2px; size:300px">itwerks</div>';
-	
-	{if (!$sql || mysqli_num_rows($sql) == 0){
+		if (!$sql || mysqli_num_rows($sql) == 0){
 	     echo "eroare";}
 	 else
-	 {   $result = mysqli_num_rows($sql);                             
-
+	 {   
+          $result = mysqli_num_rows($sql);                             
           $_SESSION['use']=$row[1];
-
-
-         echo '<script type="text/javascript"> window.open("../php/home.php","_self");</script>';            //  On Successful Login redirects to home.php
-
+		  echo '<script type="text/javascript"> window.open("../php/home.php","_self");</script>';            //  On Successful Login redirects to home.php
 	}}
-
+else {
+			
+	echo"Nume utilizator sau parola gresita";
+			}
         
 }
  ?>
