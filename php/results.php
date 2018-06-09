@@ -41,18 +41,20 @@ function add($val){
 	//$newIDQuery = "SELECT COUNT(*) AS 'total' FROM choices WHERE id_user = 1";
 	$result = mysqli_query($dbconn,"SELECT count(*) as total from choices");
 	$data = mysqli_fetch_assoc($result);
-	//echo 'New ID = '.$data['total'] . '<br><br>';
 
 	$newID = intval($data['total'] + 1);
+	//echo 'New ID = '.$newID . '<br><br>';
 
 	$insertQuery = "INSERT INTO `choices`(`id`, `id_user`, `id_souvenir`) VALUES (". $newID .",1," . $suvID . ")";
 	//echo $insertQuery;
 	$result = mysqli_query($dbconn,$insertQuery);
-	/*if($result){
+	/*
+	if($result){
 		echo '<br>Data inserted';
 	}else{
 		echo '<br><br>Insert FAILED';
-	}*/
+	}
+	*/
 
 }
 
@@ -77,7 +79,7 @@ function add($val){
 <div id = "sidebar" style="top:2%; left: 6%;">
 	<div>
 		<div><p class = "menu"><img src="../images/empty.png" class = "icon"></p></div>
-		<div><a href = "../html/MyProfile.html"><p class = "menu"><img src="../images/profile.png" class = "icon zoom"></p></a></div>
+		<div><a href = "../php/profile.php"><p class = "menu"><img src="../images/profile.png" class = "icon zoom"></p></a></div>
 		<div><a href = "../html/map-page.html"><p class = "menu"><img src="../images/search.png" class = "icon zoom"></p></a></div>
 		<div><a href='logout.php'><p class = "menu"><img src="../images/logout.png" class = "icon zoom"></p></a></div>
 	</div>
