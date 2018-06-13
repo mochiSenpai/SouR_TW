@@ -214,10 +214,37 @@ function add($val){
 </form>
 </div>
 <?php
+
+session_start();
+	$use = $_SESSION['use'];
+$id= array();
+$nume=array();
+//$des=array();
+//$photo_link=array();
+//$price=array();
+
+ $sql =mysqli_query( $dbconn,"SELECT id,name,description,photo_link,price from souvenirs");
+ $row = mysqli_fetch_array($sql);
+
+while ($row = $sql->fetch_array(MYSQLI_ASSOC))
+{
+   array_push($id, $row["id"]);
+   array_push($nume, $row["name"]);
+   //array_push($des, $row["description"]);
+  // array_push($photo_link, $row["photo_link"]);
+   //array_push($price, $row["price"]);
+}
+
+ 
+
+  
+
+   
  if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction1']))
     {
-        XML();
+        XML($id,$nume);
     }
+ 
   if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction2']))
     {
         HTML();
@@ -232,15 +259,42 @@ function add($val){
     }
 
 		
- function XML(){
+ function XML($id,$nume){
 	
-	
-     echo "FormatXML";
+	$filePath = 'book.xml';
 
-     
-     
- } 
-  function HTML(){
+   $dom = new DOMDocument('1.0', 'utf-8'); 
+   $root = $dom->createElement('suveniruri'); 
+   
+    for($x=0;$x<count($id);$x++){
+		
+	$suvid=$id[$x];
+	$suvname=$nume[$x];
+	//$suvdes=$des[$x];
+	//$suvphoto=$photo_link[$x];
+	//$suvprice=$price[$x];
+	
+
+	
+	$book = $dom->createElement('suvenir');
+    $ID= $dom->createElement('id', $suvid); 
+    $book->appendChild($ID); 
+	$NUME=$dom->createElement('nume', $suvname); 
+	$book->appendChild($NUME);
+	//$DESCRIPTION=$dom->createElement('description', $suvdes); 
+	//$book->appendChild($DESCRIPTION);
+	//$PHOTO=$dom->createElement('link_photo', $suvphoto); 
+	//$book->appendChild($PHOTO);
+	//$PRICE=$dom->createElement('price', $suvprice); 
+	//$book->appendChild($PRICE);
+ $dom->appendChild($book); 
+   }
+   
+   $dom->appendChild($root); 
+   $dom->save($filePath); 
+}
+
+ function HTML(){
 	
 	
      echo "FormatHTML";
