@@ -38,14 +38,17 @@ function add($val){
 	require '../config/databaseConfig.php';
 	$suvID = intval($val);
 
-	//$newIDQuery = "SELECT COUNT(*) AS 'total' FROM choices WHERE id_user = 1";
+	session_start();
+	$use = $_SESSION['use'];
+
+	//$newIDQuery = "SELECT COUNT(*) AS 'total' FROM choices WHERE id_user =..";
 	$result = mysqli_query($dbconn,"SELECT count(*) as total from choices");
 	$data = mysqli_fetch_assoc($result);
 
 	$newID = intval($data['total'] + 1);
 	//echo 'New ID = '.$newID . '<br><br>';
 
-	$insertQuery = "INSERT INTO `choices`(`id`, `id_user`, `id_souvenir`) VALUES (". $newID .",1," . $suvID . ")";
+	$insertQuery = "INSERT INTO `choices`(`id`, `id_user`, `id_souvenir`) VALUES (". $newID .",". $use ."," . $suvID . ")";
 	//echo $insertQuery;
 	$result = mysqli_query($dbconn,$insertQuery);
 	/*
