@@ -40,6 +40,7 @@ else {
 			}
         
 }
+
 $errors = array(); 
 
 
@@ -48,11 +49,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $country = $_POST['country'];
 $bday = $_POST['bday'];
-$result = mysqli_query($dbconn,"SELECT count(*) as total from users");
-$data = mysqli_fetch_assoc($result);
 
-
-$newID = intval($data['total'] + 1);
 //CHeck if it is not empty
  if (empty($username)) { array_push($errors, "Username is required"); }
  if (empty($password)) { array_push($errors, "Password is required"); }
@@ -72,15 +69,16 @@ if($resultCheck > 0){ array_push($errors, "Username is alrady used. Please choos
 if (count($errors) == 0) {
 			//hashing the password
 			//$hashedPwd = trim(password_hash($pass, PASSWORD_DEFAULT));
+$result = mysqli_query($dbconn,"SELECT count(*) as total from users");
+$data = mysqli_fetch_assoc($result);
+
+$newID = intval($data['total'] + 2);
+$_SESSION['use'] = $newID;
+
 $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
-			//$_SESSION['id'] = $row['id'];
+			
 			//insert the user
-			/*echo $newID;
-			echo $username;
-			echo $hashedPwd;
-			echo $country;
-			echo $bday;*/
-			//$query = "INSERT INTO 'users' ('id', 'username', 'password', 'country_id', 'birthday', 'profilePic_id') values (2, 'oana', 'pparola', 'usa', '11-01-1998', 2)";
+			
 			$time = strtotime($bday);
 			$newbirthday = date('Y-m-d', $time);
 
@@ -96,15 +94,12 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 			
 			$data = mysqli_query($dbconn,$query);
 			
-			/*if($result){
-		echo '<br>Data inserted';
-	}else{
-		echo '<br><br>Insert FAILED';
-	}*/
-			$_SESSION['use'] = $newID;
+		
+			//$_SESSION['use'] = $newID;
 			header('Location: ../php/profile.php');
 			}
-		}
+    }
+	
 
 	
 
