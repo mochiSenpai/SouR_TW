@@ -3,7 +3,43 @@
 require '../config/databaseConfig.php';
 
 session_start();
+if(isset($_SESSION['use']))   // Checking whether the session is already there or not if 
+                              // true then header redirect it to the home page directly 
+ {
+    header("Location:home.php"); 
+ }
 
+if(isset($_POST['login']))   // it checks whether the user clicked login button or not 
+{
+     $user = $_POST['user'];
+     $pass = $_POST['pass'];
+
+	 
+	
+	 $sql =mysqli_query( $dbconn,"SELECT password,id FROM users WHERE trim(username) ='$user'");
+	 
+	 
+  $row = mysqli_fetch_array($sql);
+
+
+  
+if(password_verify(trim($pass),trim($row["password"])))
+	{
+			
+		if (!$sql || mysqli_num_rows($sql) == 0){
+	     echo "eroare";}
+	 else
+	 {   
+          $result = mysqli_num_rows($sql);                             
+          $_SESSION['use']=$row[1];
+		  echo '<script type="text/javascript"> window.open("../php/home.php","_self");</script>';            //  On Successful Login redirects to home.php
+	}}
+else {
+			
+	echo"Nume utilizator sau parola gresita";
+			}
+        
+}
 $errors = array(); 
 
 
@@ -65,7 +101,7 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 	}else{
 		echo '<br><br>Insert FAILED';
 	}*/
-			$_SESSION['username'] = $username;
+			$_SESSION['use'] = $newID;
 			header('Location: ../php/profile.php');
 			}
 		}
@@ -88,10 +124,10 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
   <div class="desktop"> 
     <div class="container">           
       <div class="topbar">
-          <form action="" method = "post">
-          <div class="fl"><input type="text" id="fname" name="regusername" placeholder="username.."></div>
-          <div class="fl" ><input type="password" id="lname" name="regpassword" placeholder="password.."></div>
-          <div class="fl"><input style="width: 210px;" type="submit" value="Login" name = "login"></div>
+          <form action="" method="post">
+          <div class="fl"><input type="text" name="user" ></div>
+          <div class="fl" ><input type="password" name="pass"></div>
+          <div class="fl"><input  style="width: 210px;" type="submit" name="login" value="LOGIN"></div>
            </form>
       </div>
     </div>  
@@ -104,7 +140,7 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
             <div class="title" style="font-size: 10px">Don't have an account yet?</div>
             <div class="title"><p>Sign up </p></div>
             
-            <form action="" method="POST">
+            <form action="" method="post">
             	<?php include('errors.php'); ?>
                 <label for="fname">Username:</label>
                 <input style="width: 350px" type="text" id="fname" name="username" placeholder="username.." >

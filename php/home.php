@@ -2,7 +2,7 @@
 
       if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
        {
-           header("Location:login.php");  
+           header("Location:register.php");  
        }
 	  
 
@@ -24,8 +24,8 @@
 	<div id = "sidebar" style="top:2%; left: 6%;">
 		<div>
 			<div><p class = "menu"><img src="../images/empty.png" class = "icon"></p></div>
-			<div><a href = "../html/MyProfile.html?user=1"><p class = "menu"><img src="../images/profile.png" class = "icon zoom"></p></a></div>
-			<div><a href = "../html/map-page.html"><p class = "menu"><img src="../images/search.png" class = "icon zoom"></p></a></div>
+			<div><a href = "../php/profile.php"><p class = "menu"><img src="../images/profile.png" class = "icon zoom"></p></a></div>
+			<div><a href = "../php/home.php"><p class = "menu"><img src="../images/search.png" class = "icon zoom"></p></a></div>
 			<div><a href='logout.php'><p class = "menu"><img src="../images/logout.png" class = "icon zoom"></p></a></div>
 		</div>
 	</div>
