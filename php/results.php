@@ -145,6 +145,9 @@ function add($val){
 		$itemDesc = $row['description'];
 		$price = $row['price'];
 		$imgSource = $row['photo_link'];
+		
+		
+
 
 		?>
 		<div class="col-3 option">
@@ -174,6 +177,8 @@ function add($val){
 			$itemDesc = $row['description'];
 			$price = $row['price'];
 			$imgSource = $row['photo_link'];
+			
+			
 	?>
 	
 		<div class="col-2 empty"></div>
@@ -197,12 +202,69 @@ function add($val){
 		<div class="col-12 breakrow"></div>
 		<div class="row"> 
 
-<div class="col-2 empty"></div>
+<div class="col-1 empty"></div>
 <?php } ?> 
+<div class="col-2">
+<form action="" method="post">
+    <input type="submit" name="someAction1" value="FormatXML" />
+	<input type="submit" name="someAction2" value="FormatHTML" />
+    <input type="submit" name="someAction3" value="FormatJSON" />
+	<input type="submit" name="someAction4" value="FormatCSV" />
 
+</form>
 </div>
+<?php
+ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction1']))
+    {
+        XML();
+    }
+  if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction2']))
+    {
+        HTML();
+    }
+ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction3']))
+    {
+        JSON();
+    }
+ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction4']))
+    {
+        CSV();
+    }
 
+		
+ function XML(){
+	
+	
+     echo "FormatXML";
 
+     
+     
+ } 
+  function HTML(){
+	
+	
+     echo "FormatHTML";
+
+     
+     
+ } 
+  function JSON(){
+	
+	
+     echo "FormatJSON";
+
+     
+     
+ } 
+  function CSV(){
+	
+	
+     echo "FormatCSV";
+
+     
+     
+ } 
+?>
+</div>
 </body>
-
 </html>
