@@ -6,7 +6,7 @@ session_start();
 $use = $_SESSION['use'];
 //echo "\n\n\n";
 //echo $user;
-$likedItemsCount=0;
+
 
 
 /*get user data*/
@@ -88,7 +88,7 @@ $profilePictureId = $userrow[0]['profilePic_id'];
 $visitedCountriesQuery = "SELECT DISTINCT country_id from choices c join souvenirs s on c.id_souvenir = s.id WHERE c.id_user = ?";
 
 if($visitedCountries = $dbconn->prepare($visitedCountriesQuery)) { 
-   $country=$userrow[0]['country_id'];
+ $country=$userrow[0]['country_id'];
  $visitedCountries->bind_param('s', $use);
  $visitedCountries->execute();
    
@@ -108,10 +108,11 @@ while($row = $result->fetch_assoc()) {
 
 
 /*get list of liked items*/
-$likedItemsQuery = "SELECT * FROM choices WHERE id_user =?";
+ $likedItemsc=array();
+ $likedItemsQuery = "SELECT * FROM choices WHERE id_user =?";
 
 if($likedItems = $dbconn->prepare($likedItemsQuery)) { 
-$id=$userrow[0]['id'];
+  $id=$userrow[0]['id'];
   $likedItems->bind_param('s', $id);
   $likedItems->execute();
    
@@ -122,8 +123,10 @@ $id=$userrow[0]['id'];
 
 $result =$likedItems->get_result();
 while($row = $result->fetch_assoc()) {
- $likedItemsCount= mysqli_num_rows($result);
+ array_push($likedItemsc,$row);
 }
+$likedItemsCount=count($likedItemsc);
+
 //if(!$likedItemsCount) exit('No rows');
 
 
@@ -242,69 +245,49 @@ $profilePicture = $profilePictureArr[0]['filename'];
 			</div>
 
 		<?php
-			$countryCounter = 0;
-			if(count($countries)>0){
-			for($x=0;$x<=count($countries);$x++)
+		
+			$count=count($countries);
+			while($count>0)
 			{
-				 $currentCountry = $countries[$x]['country_id'];
-			echo $countries[$x]['country_id'];
-		   
+				 $currentCountry = $countries[$count-1]['country_id'];
+			     
 		  ?>
 
 			<div id = "myItems">
-				
 				<div class = "country col-12">
 					<div class = "col-2 empty"></div>
-
-					<div class = "col-8">
-
-						<button class = "accordion col-12"> 
-						<?php
+                        <div class = "col-8">
+                            <button class = "accordion col-12"> <?php
 						
-						     $cName=array();
+						    unset($cName);
+		                    $cName=array();
                              $countryNameQuery = "SELECT name FROM countries WHERE id =?";
-                       
                              if($countryName = $dbconn->prepare($countryNameQuery)) { 
-
-                              $countryName->bind_param('s', $currentCountry);
-                              $countryName->execute();
+                                   $countryName->bind_param('s', $currentCountry);
+                                   $countryName->execute();
    
                               } else {
-                              $error = $dbconn->errno . ' ' . $dbconn->error;
-                              echo $error; }
+                                   $error = $dbconn->errno . ' ' . $dbconn->error;
+                                   echo $error; }
 
                               $result =$countryName->get_result();
                               while($row = $result->fetch_assoc()) {
-                              array_push($cName,$row);
-                             
-
- 
-						
-
-							  echo  $row['name'];?> </button>
-						<div class="panel col-12">
-						<?php 
-						
-					$countryItemsQuery = 'SELECT * FROM choices c join souvenirs s on c.id_souvenir = s.id and country_id = ? and c.id_user = ?';
-
-                   if($countryItems = $dbconn->prepare($countryItemsQuery)) { 
-                       $countryItems>bind_param('ss', $currentCountry, $use);
-                       $countryItems->execute();
-   
-                     } else {
-                        $error = $dbconn->errno . ' ' . $dbconn->error;
-                        echo $error; 
-}
-
-                   $result = $countryItems->get_result();
-                   while($rows = $result->fetch_assoc()) {
-
-						
-						
+                                 array_push($cName,$row);}
+                          
+                            echo  $cName[0]['name'];
 							
+			               ?> </button> 
+							
+						<div class="panel col-12">
+							<?php 
+							$countryItemsQuery = 'SELECT * FROM choices c join souvenirs s on c.id_souvenir = s.id and country_id = '. $currentCountry .' and c.id_user = '. $use;
+							$countryItems = mysqli_query($dbconn,$countryItemsQuery);
+
+							while($item = mysqli_fetch_array($countryItems)){
+
 						?>
 						  <p class = "idea">
-						  	§ &nbsp <?php echo "laaaa" ?>
+						  	§ &nbsp <?php echo $item['name'] ?>
 						  </p>
 						 <?php } ?>
 						</div>
@@ -312,13 +295,14 @@ $profilePicture = $profilePictureArr[0]['filename'];
 
 					<div class = "col-2 empty"></div>
 				</div>
+<?php $count=$count-1;}  ?>
 
-			<?php }}} ?>
+			
 			</div><!--end myItems div-->
 
 		</div><!--end mainProfile div-->
 
-		<div class="col-2"></div>			
+		<div class="col-2"></div>	
 
 	
 		</div>
