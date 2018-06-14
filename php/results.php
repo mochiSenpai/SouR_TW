@@ -367,10 +367,37 @@ function add($val){
 
  function HTML($newDataToExport){
 	
-	
-     echo "FormatHTML";
+	$therows = array();
 
-     
+	while($newRow = mysqli_fetch_assoc($newDataToExport)) {
+	    $therows[] = $newRow;
+		
+	}
+
+$myfile = fopen("../exports/exportAsHTML.html", "w") or die("Unable to open file!");
+
+
+   
+$data = "<table border = '1'>";
+fwrite($myfile, $data);
+$txt = "<tr><td>ID</td><td>Name</td><td>Description</td><td>Photo</td><td>Price</td></tr>\n";
+fwrite($myfile,$txt );
+for($x=0;$x<count($therows);$x++)
+	{
+	   $id= $therows[$x]['id'];
+	   $nume=  $therows[$x]["name"];
+	   $des=  $therows[$x]["description"];
+	   $photo= $therows[$x]["photo_link"];
+	   $price=  $therows[$x]["price"];
+	$text = "<tr><td>".$id."</td><td>".$nume."</td><td>".$des."</td><td>".$photo."</td><td>".$price."</td></tr>\n";
+	fwrite($myfile, $text);
+
+}
+
+$end = "</table>";
+fwrite($myfile, $end);
+
+	fclose($myfile);  
      
  } 
   function JSON($newDataToExport){
@@ -380,9 +407,7 @@ function add($val){
 	    $rows[] = $newRow;
 	}
 
-	$myfile = fopen("../exports/exportAsJSON.json", "w") or die("Unable to open file!");
-	$txt = json_encode($rows);
-	fwrite($myfile, $txt);
+	
 	fclose($myfile);   
  } 
 
