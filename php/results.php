@@ -374,10 +374,8 @@ function add($val){
 		
 	}
 
-$myfile = fopen("../exports/exportAsHTML.html", "w") or die("Unable to open file!");
-
-
-   
+	$myfile = fopen("../exports/exportAsHTML.html", "w") or die("Unable to open file!");
+  
 $data = "<table border = '1'>";
 fwrite($myfile, $data);
 $txt = "<tr><td>ID</td><td>Name</td><td>Description</td><td>Photo</td><td>Price</td></tr>\n";
@@ -400,6 +398,8 @@ fwrite($myfile, $end);
 	fclose($myfile);  
      
  } 
+
+
   function JSON($newDataToExport){
 	
 	$rows = array();
@@ -407,16 +407,22 @@ fwrite($myfile, $end);
 	    $rows[] = $newRow;
 	}
 
-	
+	$myfile = fopen("../exports/exportAsJSON.json", "w") or die ("Unable to open file!");
+	$txt = json_encode($rows);
+	fwrite($myfile, $txt);	
 	fclose($myfile);   
  } 
 
   function CSV($newDataToExport){
-	
-	
-     echo "FormatCSV";
+		$header = array("Name", "Description", "Price","ImageSource");
+		$file = fopen("../exports/exportAsCSV.csv", "w");
+		fputcsv($file, $header,';','"');
 
-    
-     
- } 
+		while ($row = mysqli_fetch_assoc($newDataToExport)){
+			$line = array($row['name'], $row['description'], $row['price'], $row['photo_link']);
+		    fputcsv($file, $line,';','"');
+		}
+
+		fclose($file);
+	}
 ?>
