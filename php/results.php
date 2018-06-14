@@ -319,7 +319,7 @@ function add($val){
 
  	
 	
-   $filePath = '../exports/FormatXML.xml';
+   $filePath = '../exports/exportAsXML.xml';
 
    $dom = new DOMDocument('1.0', 'utf-8'); 
    $root = $dom->createElement('suveniruri'); 
@@ -333,33 +333,32 @@ function add($val){
 
 		//var_dump( $rows);
 	
-
-
- for($x=0;$x<count($rows);$x++)
-	{
-	   $id= $rows[$x]['id'];
-	   $nume=  $rows[$x]["name"];
-	   $des=  $rows[$x]["description"];
-	   $photo= $rows[$x]["photo_link"];
-	   $price=  $rows[$x]["price"];
-	
-    $book = $dom->createElement('suvenir');
-    $ID= $dom->createElement('id', $id); 
-    $book->appendChild($ID); 
-	$NUME=$dom->createElement('nume', $nume); 
-	$book->appendChild($NUME);
-	$DESCRIPTION=$dom->createElement('description', $des); 
-	$book->appendChild($DESCRIPTION);
-	$PHOTO=$dom->createElement('link_photo', $photo); 
-	$book->appendChild($PHOTO);
-	$PRICE=$dom->createElement('price', $price); 
-	$book->appendChild($PRICE);
-    $root->appendChild($book); 
-   }
+	 for($x=0;$x<count($rows);$x++)	{
+		   $id= $rows[$x]['id'];
+		   $nume=  $rows[$x]["name"];
+		   $des=  $rows[$x]["description"];
+		   $photo= $rows[$x]["photo_link"];
+		   $price=  $rows[$x]["price"];
+		
+		    $book = $dom->createElement('suvenir');
+		    $ID= $dom->createElement('id', $id); 
+		    $book->appendChild($ID); 
+			$NUME=$dom->createElement('nume', $nume); 
+			$book->appendChild($NUME);
+			$DESCRIPTION=$dom->createElement('description', $des); 
+			$book->appendChild($DESCRIPTION);
+			$PHOTO=$dom->createElement('link_photo', $photo); 
+			$book->appendChild($PHOTO);
+			$PRICE=$dom->createElement('price', $price); 
+			$book->appendChild($PRICE);
+		    $root->appendChild($book); 
+	   }
    
-   $dom->appendChild($root); 
-   $dom->save($filePath); 
-}
+	   $dom->appendChild($root); 
+	   $dom->save($filePath); 
+
+	   header('Location: exports.php?filename=../exports/exportAsXML.xml');
+	}
 
 
 
@@ -376,28 +375,28 @@ function add($val){
 
 	$myfile = fopen("../exports/exportAsHTML.html", "w") or die("Unable to open file!");
   
-$data = "<table border = '1'>";
-fwrite($myfile, $data);
-$txt = "<tr><td>ID</td><td>Name</td><td>Description</td><td>Photo</td><td>Price</td></tr>\n";
-fwrite($myfile,$txt );
-for($x=0;$x<count($therows);$x++)
-	{
-	   $id= $therows[$x]['id'];
-	   $nume=  $therows[$x]["name"];
-	   $des=  $therows[$x]["description"];
-	   $photo= $therows[$x]["photo_link"];
-	   $price=  $therows[$x]["price"];
-	$text = "<tr><td>".$id."</td><td>".$nume."</td><td>".$des."</td><td>".$photo."</td><td>".$price."</td></tr>\n";
-	fwrite($myfile, $text);
+	$data = "<table border = '1'>";
+	fwrite($myfile, $data);
+	$txt = "<tr><td>ID</td><td>Name</td><td>Description</td><td>Photo</td><td>Price</td></tr>\n";
+	fwrite($myfile,$txt );
 
-}
+	for($x=0;$x<count($therows);$x++){
+		   $id= $therows[$x]['id'];
+		   $nume=  $therows[$x]["name"];
+		   $des=  $therows[$x]["description"];
+		   $photo= $therows[$x]["photo_link"];
+		   $price=  $therows[$x]["price"];
+		$text = "<tr><td>".$id."</td><td>".$nume."</td><td>".$des."</td><td>".$photo."</td><td>".$price."</td></tr>\n";
+		fwrite($myfile, $text);
+	}
 
-$end = "</table>";
-fwrite($myfile, $end);
-
+	$end = "</table>";
+	fwrite($myfile, $end);
 	fclose($myfile);  
-     
- } 
+	
+
+	header('Location: exports.php?filename=../exports/exportAsHTML.html');
+} 
 
 
   function JSON($newDataToExport){
@@ -410,7 +409,9 @@ fwrite($myfile, $end);
 	$myfile = fopen("../exports/exportAsJSON.json", "w") or die ("Unable to open file!");
 	$txt = json_encode($rows);
 	fwrite($myfile, $txt);	
-	fclose($myfile);   
+	fclose($myfile);
+
+	header('Location: exports.php?filename=../exports/exportAsJSON.json');
  } 
 
   function CSV($newDataToExport){
@@ -424,5 +425,10 @@ fwrite($myfile, $end);
 		}
 
 		fclose($file);
+
+	    header('Location: exports.php?filename=../exports/exportAsCSV.csv');
 	}
+
+
+
 ?>
