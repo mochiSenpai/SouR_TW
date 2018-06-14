@@ -7,56 +7,147 @@ $use = $_SESSION['use'];
 //echo "\n\n\n";
 //echo $user;
 
-$userBasicDataQuery = "SELECT * FROM users WHERE id = ".$use; 
-$userBasicData = mysqli_query($dbconn, $userBasicDataQuery);
-//echo mysqli_num_rows($userBasicData);
-$userrow = mysqli_fetch_assoc($userBasicData);
+
+
+/*get user data*/
+
+$userquerry = "SELECT * FROM users WHERE id =?";
+if($userBasicData = $dbconn->prepare($userquerry)) { 
+   $userBasicData->bind_param('s', $use);
+   $userBasicData->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result = $userBasicData->get_result();
+while($row = $result->fetch_assoc()) {
+   $userrow[] = $row;
+}
+if(!$userrow) exit('No rows');
+
 
 
 /*get user country name*/
-$userCountryQuery = "SELECT * FROM countries WHERE id = ".$userrow['country_id'];
-$userCountry = mysqli_query($dbconn, $userCountryQuery);
-$countryrow = mysqli_fetch_array($userCountry);
+$userCountryQuery = "SELECT * FROM countries WHERE id = ?";
 
+if($userCountry = $dbconn->prepare($userCountryQuery)) { 
+   $country=$userrow[0]['country_id'];
+   $userCountry->bind_param('s', $country);
+   $userCountry->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result =$userCountry->get_result();
+while($row = $result->fetch_assoc()) {
+  $countryrow[] = $row;
+}
+//if(!$countryrow) exit('No rows');
+
+
+ 
 /*compute user age based on birthdate*/
-$ageQuery = "SELECT TIMESTAMPDIFF(year, '" . $userrow['birthday'] . "', curdate()) AS 'age'";
-$userAgePrepare = mysqli_query($dbconn, $ageQuery);
-$userAge = mysqli_fetch_array($userAgePrepare);
+ 
+  
+
+$ageQuery = "SELECT TIMESTAMPDIFF(year, ?, now()) AS 'age'";
+
+if($userAgePrepare = $dbconn->prepare($ageQuery)) { 
+   $birthday=$userrow[0]['birthday'];
+   $userAgePrepare->bind_param('s', $birthday);
+   $userAgePrepare->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result =$userAgePrepare->get_result();
+while($row = $result->fetch_assoc()) {
+  $userAge[] = $row;
+}
+if(!$userAge) exit('No rows');
+
 
 /*get user data to display on profile*/
-$username = $userrow['username'];
-$age = $userAge['age'];
-$birthday = $userrow['birthday'];
-$country = $countryrow['name'];
-$profilePictureId = $userrow['profilePic_id'];
+$username = $userrow[0]['username'];
+$age = $userAge[0]['age'];
+$birthday = $userrow[0]['birthday'];
+$usercountry = $countryrow[0]['name'];
+
+$profilePictureId = $userrow[0]['profilePic_id'];
 
 /*get list of visited countries (ids)*/
-$visitedCountriesQuery = "SELECT DISTINCT country_id from choices c join souvenirs s on c.id_souvenir = s.id WHERE c.id_user = ".$use;
-$visitedCountries = mysqli_query($dbconn, $visitedCountriesQuery);
-$countriesCount = mysqli_num_rows($visitedCountries);
 
 
-$likedItemsQuery = "SELECT * FROM choices WHERE id_user =".$userrow['id'];
-$likedItems = mysqli_query($dbconn, $likedItemsQuery);
-$likedItemsCount = mysqli_num_rows($likedItems);
+$visitedCountriesQuery = "SELECT DISTINCT country_id from choices c join souvenirs s on c.id_souvenir = s.id WHERE c.id_user = ?";
+
+if($visitedCountries = $dbconn->prepare($visitedCountriesQuery)) { 
+   $country=$userrow[0]['country_id'];
+ $visitedCountries->bind_param('s', $use);
+ $visitedCountries->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result = $visitedCountries->get_result();
+$countriesCount= mysqli_num_rows($result);
+while($row = $result->fetch_assoc()) {
+  $countries[]=$row;
+  
+}
+//if(!$countries) exit('No rows');
 
 
-$profilePicQuery = "SELECT * FROM profilePictures WHERE id = " . $profilePictureId;
-$profilePicRes = mysqli_query($dbconn, $profilePicQuery);
-$profilePictureArr = mysqli_fetch_array($profilePicRes);
-$profilePicture = $profilePictureArr['filename'];
+
+/*get list of liked items*/
+$likedItemsQuery = "SELECT * FROM choices WHERE id_user =?";
+
+if($likedItems = $dbconn->prepare($likedItemsQuery)) { 
+$id=$userrow[0]['id'];
+  $likedItems->bind_param('s', $id);
+  $likedItems->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result =$likedItems->get_result();
+while($row = $result->fetch_assoc()) {
+ $likedItemsCount= mysqli_num_rows($result);
+}
+//if(!$likedItemsCount) exit('No rows');
 
 
-//echo $profilePicture;
-/*
-echo 'Username = ' . $username . '<br>';
-echo 'Country = ' . $country . '<br>';
-echo 'Birthday = ' . $birthday .'<br>';
-echo 'Age = ' . $age . '<br>';
-echo 'Number of countries = ' . $countriesCount . '<br>';
-echo 'Souvenirs = ' . $likedItemsCount . '<br>';
-echo 'Imgsrc = ' . $profilePicture;
-*/
+
+
+/*profile pic*/
+$profilePicQuery = "SELECT * FROM profilePictures WHERE id = ?";
+
+if($profilePicRes = $dbconn->prepare($profilePicQuery)) { 
+   $profilePicRes->bind_param('s', $profilePictureId);
+   $profilePicRes->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result =$profilePicRes->get_result();
+while($row = $result->fetch_assoc()) {
+  $profilePictureArr[] = $row;
+}
+//if(!$profilePictureArr) exit('No rows');
+$profilePicture = $profilePictureArr[0]['filename'];
+
+
 ?>
 
 
@@ -120,7 +211,7 @@ echo 'Imgsrc = ' . $profilePicture;
 						</div>
 						<div class = "countryAge">
 							<?php
-								echo $country . ', ' . $age . ' years'
+								echo $usercountry . ', ' . $age . ' years'
 							?>
 						</div>
 						<div class = "dob"><?php echo $birthday ?></div>
@@ -151,8 +242,12 @@ echo 'Imgsrc = ' . $profilePicture;
 
 		<?php
 			$countryCounter = 0;
-			while($countryRow = mysqli_fetch_array($visitedCountries)){
-				$currentCountry = $countryRow['country_id'];
+			echo count($countries);
+			for($x=0;$x<=count($countries);$x++)
+			{
+				 $currentCountry = $countries[$x]['country_id'];
+			echo $countries[$x]['country_id'];
+		   
 		  ?>
 
 			<div id = "myItems">
@@ -162,22 +257,53 @@ echo 'Imgsrc = ' . $profilePicture;
 
 					<div class = "col-8">
 
-						<button class = "accordion col-12"> <?php
-						$countryNameQuery = "SELECT name FROM countries WHERE id =" . $currentCountry;
-						$countryName = mysqli_query($dbconn, $countryNameQuery);
-						$cName = mysqli_fetch_array($countryName);
+						<button class = "accordion col-12"> 
+						<?php
+						
+						
+                             $countryNameQuery = "SELECT name FROM countries WHERE id =?";
 
-						echo $cName['name']; ?> </button>
+                             if($countryName = $dbconn->prepare($countryNameQuery)) { 
+
+                              $countryName->bind_param('s', $currentCountry);
+                              $countryName->execute();
+   
+                              } else {
+                              $error = $dbconn->errno . ' ' . $dbconn->error;
+                              echo $error; }
+
+                              $result =$countryName->get_result();
+                              while($row = $result->fetch_assoc()) {
+                              $cName[] = $row;
+                             
+
+ 
+						
+
+							  echo  $row['name'];?> </button>
 						<div class="panel col-12">
 						<?php 
-							$countryItemsQuery = 'SELECT * FROM choices c join souvenirs s on c.id_souvenir = s.id and country_id = '. $currentCountry .' and c.id_user = '. $use;
-							$countryItems = mysqli_query($dbconn,$countryItemsQuery);
+						
+					$countryItemsQuery = 'SELECT * FROM choices c join souvenirs s on c.id_souvenir = s.id and country_id = ? and c.id_user = ?';
 
-							while($item = mysqli_fetch_array($countryItems)){
+                   if($countryItems = $dbconn->prepare($countryItemsQuery)) { 
+                       $countryItems>bind_param('ss', $currentCountry, $use);
+                       $countryItems->execute();
+   
+                     } else {
+                        $error = $dbconn->errno . ' ' . $dbconn->error;
+                        echo $error; 
+}
 
+                   $result = $countryItems->get_result();
+                   while($rows = $result->fetch_assoc()) {
+
+						
+						
+							
 						?>
 						  <p class = "idea">
-						  	§ &nbsp <?php echo $item['name'] ?>
+						  	§ &nbsp <?php echo "laaaa" ?>
 						  </p>
 						 <?php } ?>
 						</div>
@@ -186,7 +312,7 @@ echo 'Imgsrc = ' . $profilePicture;
 					<div class = "col-2 empty"></div>
 				</div>
 
-		<?php } ?>
+			<?php }} ?>
 			</div><!--end myItems div-->
 
 		</div><!--end mainProfile div-->
