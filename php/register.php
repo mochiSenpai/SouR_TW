@@ -8,30 +8,43 @@ if(isset($_SESSION['use']))   // Checking whether the session is already there o
  {
     header("Location:home.php"); 
  }
-
+ $login=array();
 if(isset($_POST['login']))   // it checks whether the user clicked login button or not 
 {
      $user = $_POST['user'];
      $pass = $_POST['pass'];
 
 	 
-	
-	 $sql =mysqli_query( $dbconn,"SELECT password,id FROM users WHERE trim(username) ='$user'");
-	 
-	 
-  $row = mysqli_fetch_array($sql);
 
+  if($log = $dbconn->prepare("SELECT password,id FROM users WHERE trim(username) =?")) { 
+   $log->bind_param('s', $user);
+   $log->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
 
+$result = $log->get_result();
+while($row = $result->fetch_assoc()) {
+   array_push($login,$row);
+}
+if(!$login)
+	echo"Nume utilizator sau parola gresita";
+
+	 
+
+if($login){
   
-if(password_verify(trim($pass),trim($row["password"])))
+if(password_verify(trim($pass),trim($login[0]["password"])))
 	{
 			
-		if (!$sql || mysqli_num_rows($sql) == 0){
+		if (!$result || mysqli_num_rows($result) == 0){
 	     echo "eroare";}
 	 else
 	 {   
-          $result = mysqli_num_rows($sql);                             
-          $_SESSION['use']=$row[1];
+                                    
+          $_SESSION['use']=$login[0]['id'];
 		  echo '<script type="text/javascript"> window.open("../php/home.php","_self");</script>';            //  On Successful Login redirects to home.php
 	}
 }
@@ -40,7 +53,7 @@ else {
 	echo"Nume utilizator sau parola gresita";
 			}
         
-}
+}}
 
 $errors = array(); 
 
@@ -60,9 +73,25 @@ $bday = $_POST['bday'];
 if(!preg_match("/^[a-zA-Z]*$/", $username)){array_push($errors, "Username must contain only letters");} 
 if(!preg_match("/^[a-zA-Z0-9]*$/", $password)){array_push($errors, "Password can contain only letters and numbers");}
 		//Check if username is unique
-$sql = "SELECT * FROM users WHERE trim(username) = \"".$username."\"";
-$result = mysqli_query($dbconn, $sql);
-$resultCheck = mysqli_num_rows($result);
+		
+		
+		
+if($sig = $dbconn->prepare("SELECT * FROM users WHERE trim(username) = ?")) { 
+   $sig->bind_param('s', $username);
+   $sig->execute();
+   
+} else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
+
+$result = $sig->get_result();
+while($row = $result->fetch_assoc()) {
+  $resultCheck = mysqli_num_rows($result);
+}
+
+		
+		
 
 if($resultCheck > 0){ array_push($errors, "Username is alrady used. Please choose another one");}
 
@@ -70,6 +99,13 @@ if($resultCheck > 0){ array_push($errors, "Username is alrady used. Please choos
 if (count($errors) == 0) {
 			//hashing the password
 			//$hashedPwd = trim(password_hash($pass, PASSWORD_DEFAULT));
+			
+			
+			
+			
+			
+			
+			
 $result = mysqli_query($dbconn,"SELECT count(*) as total from users");
 $data = mysqli_fetch_assoc($result);
 
@@ -90,10 +126,19 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 
 			$profilePic = rand(1, intval($data['picId']));
 			
-			$query = "INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES (". $newID .", \"". $username ." \", \" ". $hashedPwd . " \" , " . $country . " , \"" . $newbirthday ." \",".$profilePic." )";
+			/*$query = "INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES (". $newID .", \"". $username ." \", \" ". $hashedPwd . " \" , " . $country . " , \"" . $newbirthday ." \",".$profilePic." )";
 
 			
-			$data = mysqli_query($dbconn,$query);
+			$data = mysqli_query($dbconn,$query);*/
+			
+			if($insert = $dbconn->prepare("INSERT INTO `users`(`id`, `username`, `password`, `country_id`, `birthday`, `profilePic_id`) VALUES
+			(?,?,?,?,?,?)")) {
+			$insert->bind_param('ssssss',  $newID,$username,$hashedPwd ,$country ,$newbirthday,$profilePic);
+            $insert->execute();}
+			else {
+    $error = $dbconn->errno . ' ' . $dbconn->error;
+    echo $error; 
+}
 			
 		
 			//$_SESSION['use'] = $newID;

@@ -6,11 +6,11 @@ session_start();
 $use = $_SESSION['use'];
 //echo "\n\n\n";
 //echo $user;
-
+$likedItemsCount=0;
 
 
 /*get user data*/
-
+$userrow=array();
 $userquerry = "SELECT * FROM users WHERE id =?";
 if($userBasicData = $dbconn->prepare($userquerry)) { 
    $userBasicData->bind_param('s', $use);
@@ -23,13 +23,14 @@ if($userBasicData = $dbconn->prepare($userquerry)) {
 
 $result = $userBasicData->get_result();
 while($row = $result->fetch_assoc()) {
-   $userrow[] = $row;
+   array_push($userrow,$row);
 }
 if(!$userrow) exit('No rows');
 
 
 
 /*get user country name*/
+$countryrow=array();
 $userCountryQuery = "SELECT * FROM countries WHERE id = ?";
 
 if($userCountry = $dbconn->prepare($userCountryQuery)) { 
@@ -44,7 +45,7 @@ if($userCountry = $dbconn->prepare($userCountryQuery)) {
 
 $result =$userCountry->get_result();
 while($row = $result->fetch_assoc()) {
-  $countryrow[] = $row;
+ array_push( $countryrow,$row);
 }
 //if(!$countryrow) exit('No rows');
 
@@ -95,14 +96,14 @@ if($visitedCountries = $dbconn->prepare($visitedCountriesQuery)) {
     $error = $dbconn->errno . ' ' . $dbconn->error;
     echo $error; 
 }
-
+$countries=array();
 $result = $visitedCountries->get_result();
 $countriesCount= mysqli_num_rows($result);
 while($row = $result->fetch_assoc()) {
-  $countries[]=$row;
+  array_push($countries,$row);
   
 }
-//if(!$countries) exit('No rows');
+ 
 
 
 
@@ -242,7 +243,7 @@ $profilePicture = $profilePictureArr[0]['filename'];
 
 		<?php
 			$countryCounter = 0;
-			echo count($countries);
+			if(count($countries)>0){
 			for($x=0;$x<=count($countries);$x++)
 			{
 				 $currentCountry = $countries[$x]['country_id'];
@@ -260,9 +261,9 @@ $profilePicture = $profilePictureArr[0]['filename'];
 						<button class = "accordion col-12"> 
 						<?php
 						
-						
+						     $cName=array();
                              $countryNameQuery = "SELECT name FROM countries WHERE id =?";
-
+                       
                              if($countryName = $dbconn->prepare($countryNameQuery)) { 
 
                               $countryName->bind_param('s', $currentCountry);
@@ -274,7 +275,7 @@ $profilePicture = $profilePictureArr[0]['filename'];
 
                               $result =$countryName->get_result();
                               while($row = $result->fetch_assoc()) {
-                              $cName[] = $row;
+                              array_push($cName,$row);
                              
 
  
@@ -312,7 +313,7 @@ $profilePicture = $profilePictureArr[0]['filename'];
 					<div class = "col-2 empty"></div>
 				</div>
 
-			<?php }} ?>
+			<?php }}} ?>
 			</div><!--end myItems div-->
 
 		</div><!--end mainProfile div-->
