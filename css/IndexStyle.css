@@ -47,7 +47,7 @@ body{
   right:-50%;
   float:right;
   overflow: hidden;
-  top: 0;
+  top: 10px;
   display: block;
   padding: 0;
   height:80px;

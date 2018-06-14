@@ -8,7 +8,9 @@ if(isset($_SESSION['use']))   // Checking whether the session is already there o
  {
     header("Location:home.php"); 
  }
+
  $login=array();
+  $var=" ";
 if(isset($_POST['login']))   // it checks whether the user clicked login button or not 
 {
      $user = $_POST['user'];
@@ -30,7 +32,7 @@ while($row = $result->fetch_assoc()) {
    array_push($login,$row);
 }
 if(!$login)
-	echo"Nume utilizator sau parola gresita";
+	$var = "Wrong username or password";
 
 	 
 
@@ -50,7 +52,7 @@ if(password_verify(trim($pass),trim($login[0]["password"])))
 }
 else {
 			
-	echo"Nume utilizator sau parola gresita";
+	$var = "Wrong username or password";
 			}
         
 }}
@@ -164,7 +166,8 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 
 <body>     
   <div class="desktop"> 
-    <div class="container">           
+    <div class="container">   
+    <div class="col-12"> <p  style="color:red; position: absolute; top: 0px; left: 817px; " ><?php echo $var; ?></p>        
       <div class="topbar">
           <form action="" method="post" autocomplete="off">
           <div class="fl"><input type="text" name="user" onkeyup="showHint(this.value)" ></div>
@@ -195,7 +198,7 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 
 
     <div>
-       <div style="position: absolute; top: 60px; left: 817px;"> <p>Suggestions: <span id="txtHint"></span></p> </div>
+       <div style="position: absolute; top: 70px; left: 817px;"> <p>Suggestions: <span id="txtHint"></span></p> </div>
 
       <div class="col-1"></div>
       <div class="col-4 motto">Don’t listen to what they say. Go see.</div>
