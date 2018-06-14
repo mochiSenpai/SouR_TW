@@ -1,1 +1,5 @@
-[{"id":"17","name":"Miniatures","description":"Famous Italian buildings","photo_link":"it_miniatures.jpg","price":"10.25","rating_value":"0","country_id":"3","gender_id":"3","period_start":"1","period_end":"12","age_min":"15","age_max":"100"},{"id":"18","name":"Pottery","description":"Ceramic pottery","photo_link":"it_pottery.jpg","price":"9.89","rating_value":"0","country_id":"3","gender_id":"3","period_start":"1","period_end":"12","age_min":"20","age_max":"100"}]
+<table border = '1'><tr><td>ID</td><td>Name</td><td>Description</td><td>Photo</td><td>Price</td></tr>
+<tr><td>6</td><td>Ie</td><td>Traditional roumanian blouse</td><td>ro_ie.jpg</td><td>63.16</td><td></tr>
+<tr><td>8</td><td>Ceramic Mug</td><td>Roumanian culture and talent</td><td>ro_ceramic_mug.jpg</td><td>7.57</td><td></tr>
+<tr><td>9</td><td>Handmade Jewerly</td><td>Handmade colorful accessories</td><td>ro_handmade_jewerly.jpg</td><td>3.78</td><td></tr>
+</table>
