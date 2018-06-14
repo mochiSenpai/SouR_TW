@@ -166,14 +166,14 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
   <div class="desktop"> 
     <div class="container">           
       <div class="topbar">
-          <form action="" method="post">
+          <form action="" method="post" autocomplete="off">
           <div class="fl"><input type="text" name="user" onkeyup="showHint(this.value)" ></div>
           <div class="fl" ><input type="password" name="pass"></div>
           <div class="fl"><input  style="width: 210px;" type="submit" name="login" value="LOGIN"></div>
            </form>
-           
       </div>
-      <p>Suggestions: <span id="txtHint"></span></p> 
+
+
        <script>
         function showHint(str) {
         if (str.length == 0) { 
@@ -191,8 +191,12 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
     }
 }
 </script>
-    </div>  
+    </div> 
+
+
     <div>
+       <div style="position: absolute; top: 60px; left: 817px;"> <p>Suggestions: <span id="txtHint"></span></p> </div>
+
       <div class="col-1"></div>
       <div class="col-4 motto">Don’t listen to what they say. Go see.</div>
       <div class="col-1"></div>
@@ -201,10 +205,11 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
             <div class="title" style="font-size: 10px">Don't have an account yet?</div>
             <div class="title"><p>Sign up </p></div>
             
-            <form action="" method="post">
+            <form action="" method="post" autocomplete="off">
             	<?php include('errors.php'); ?>
                 <label for="fname">Username:</label>
-                <input style="width: 350px" type="text" id="fname" name="username" placeholder="username.." >
+                <input style="width: 350px" type="text" id="fname" name="username" placeholder="username.." onkeyup="giveHint(this.value)">
+                <p>User: <span id="textHint"></span></p>
                 <label for="lname">Password:</label>
                 <input style="width: 350px" type="password" id="lname" name="password" placeholder="password..">
                 <label  for="country">Country:</label>
@@ -225,6 +230,23 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
                     <input style="width: 350px" type="Date" id="idate" name="bday"> 
                     <input style="width: 350px" type="submit" value="Sign up" name = "signup">
             </form>
+            <script>
+              function giveHint(str) {
+              if (str.length == 0) { 
+                  document.getElementById("textHint").innerHTML = "";
+                  return;
+              } else {
+                  var xmlhttp = new XMLHttpRequest();
+                  xmlhttp.onreadystatechange = function() {
+                      if (this.readyState == 4 && this.status == 200) {
+                          document.getElementById("textHint").innerHTML = this.responseText;
+                      }
+                  };
+                  xmlhttp.open("GET", "givehint.php?q=" + str, true);
+                  xmlhttp.send();
+    }
+}
+</script>
         </div>
       </div>
 
