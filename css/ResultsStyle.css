@@ -233,6 +233,7 @@ a.effect-underline:after {
 	opacity: 1.0;
 }
 
+
 .priceTxt{
 	position: absolute;
 	top: 55%;
@@ -495,3 +496,42 @@ border-radius: 5px;
 .dropdown:hover .dropdown-content {
     display: block;
  }}
+
+
+
+.buttonExport {
+    position: relative;
+    background-color: #8F0907;
+    border: none;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 5px 5px #251B1B;
+}
+
+.buttonExport:after {
+    content: "";
+    background: #8F0907;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.buttonExport:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}

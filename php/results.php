@@ -23,6 +23,9 @@ $data = mysqli_query($dbconn,$query);
 $itemsID = array();
 $counter = 0;
 
+session_start();
+
+
 /*
 echo 'countryID = ' . $countryID;
 echo '<br>monthValue = ' . $monthValue;
@@ -38,7 +41,6 @@ function add($val){
 	require '../config/databaseConfig.php';
 	$suvID = intval($val);
 
-	session_start();
 	$use = $_SESSION['use'];
 
 	//$newIDQuery = "SELECT COUNT(*) AS 'total' FROM choices WHERE id_user =..";
@@ -202,66 +204,146 @@ function add($val){
 		<div class="col-12 breakrow"></div>
 		<div class="row"> 
 
-<div class="col-1 empty"></div>
+<div class="col-2 empty"></div>
 <?php } ?> 
 <div class="col-2">
-<form action="" method="post">
-    <input type="submit" name="someAction1" value="FormatXML" />
-	<input type="submit" name="someAction2" value="FormatHTML" />
-    <input type="submit" name="someAction3" value="FormatJSON" />
-	<input type="submit" name="someAction4" value="FormatCSV" />
 
-</form>
 </div>
-<?php
 
-session_start();
-	$use = $_SESSION['use'];
-$id= array();
-$nume=array();
-//$des=array();
-//$photo_link=array();
-//$price=array();
+</div>
 
- $sql =mysqli_query( $dbconn,"SELECT id,name,description,photo_link,price from souvenirs");
- $row = mysqli_fetch_array($sql);
+<center>
 
-while ($row = $sql->fetch_array(MYSQLI_ASSOC))
-{
-   array_push($id, $row["id"]);
-   array_push($nume, $row["name"]);
-   //array_push($des, $row["description"]);
-  // array_push($photo_link, $row["photo_link"]);
-   //array_push($price, $row["price"]);
+<style>
+.buttonExport {
+    position: relative;
+    background-color: #8F0907;
+    border: none;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 5px 5px #251B1B;
 }
 
+.buttonExport:after {
+    content: "";
+    background: #8F0907;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.buttonExport:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+</style>
+
+<form action="" method="post">
+    <input type="submit" class="buttonExport" name="exportXML" value="Format as XML" />
+	<input type="submit" class="buttonExport" name="exportHTML" value="Format as HTML" />
+    <input type="submit" class="buttonExport" name="exportJSON" value="Format as JSON" />
+	<input type="submit" class="buttonExport" name="exportCSV" value="Format as CSV" />
+
+</form>
+</center>
+
+<div class="col-12 breakrow"></div>
+
+</body>
+</html>
+
+<?php
  
 
-  
+ function getDataToExport($databaseConn){
+ 	$countryID = $_GET['countryID'];
+	$monthValue = $_GET['month'];
+	$personType = $_GET['personType'];
+	$personGender = $_GET['gender'];
+
+ 	$queryForExport = "SELECT * FROM souvenirs WHERE 
+				country_id = '{$countryID}' AND 
+				(gender_id = '{$personGender}' OR 
+				gender_id = 3) AND
+				('{$monthValue}' BETWEEN period_start AND period_end) AND
+				('{$personType}' BETWEEN age_min AND age_max)
+				ORDER BY rating_value DESC
+				";
+				
+
+	$mydata = mysqli_query($databaseConn,$queryForExport);
+
+	return $mydata;
+ }
 
    
- if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction1']))
+ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['exportXML']))
     {
-        XML($id,$nume);
+    	$dataToExport = getDataToExport($dbconn);
+        XML($dataToExport);
     }
  
-  if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction2']))
+  if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['exportHTML']))
     {
-        HTML();
+    	$dataToExport = getDataToExport($dbconn);
+        HTML($dataToExport);
     }
- if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction3']))
+ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['exportJSON']))
     {
-        JSON();
+    	$dataToExport = getDataToExport($dbconn);
+        JSON($dataToExport);
     }
- if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction4']))
+ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['exportCSV']))
     {
-        CSV();
+    	$dataToExport = getDataToExport($dbconn);
+        CSV($dataToExport);
     }
 
-		
- function XML($id,$nume){
+    function XML($newDataToExport){
+
+    }
+
+/*
+function XML(){
+ 	$use = $_SESSION['use'];
+
+	$id= array();
+	$nume=array();
+	//$des=array();
+	//$photo_link=array();
+	//$price=array();
+
+	 $sql =mysqli_query( $dbconn,"SELECT id,name,description,photo_link,price from souvenirs");
+	 $row = mysqli_fetch_array($sql);
+
+	while ($row = $sql->fetch_array(MYSQLI_ASSOC))
+	{
+	   array_push($id, $row["id"]);
+	   array_push($nume, $row["name"]);
+	   //array_push($des, $row["description"]);
+	  // array_push($photo_link, $row["photo_link"]);
+	   //array_push($price, $row["price"]);
+	}
+
+ 	
 	
-	$filePath = 'book.xml';
+	$filePath = '../exports/book.xml';
 
    $dom = new DOMDocument('1.0', 'utf-8'); 
    $root = $dom->createElement('suveniruri'); 
@@ -294,7 +376,11 @@ while ($row = $sql->fetch_array(MYSQLI_ASSOC))
    $dom->save($filePath); 
 }
 
- function HTML(){
+
+*/
+
+
+ function HTML($newDataToExport){
 	
 	
      echo "FormatHTML";
@@ -302,23 +388,25 @@ while ($row = $sql->fetch_array(MYSQLI_ASSOC))
      
      
  } 
-  function JSON(){
+  function JSON($newDataToExport){
 	
-	
-     echo "FormatJSON";
+	$rows = array();
+	while($newRow = mysqli_fetch_assoc($newDataToExport)) {
+	    $rows[] = $newRow;
+	}
 
-     
-     
+	$myfile = fopen("../exports/exportAsJSON.json", "w") or die("Unable to open file!");
+	$txt = json_encode($rows);
+	fwrite($myfile, $txt);
+	fclose($myfile);   
  } 
-  function CSV(){
+
+  function CSV($newDataToExport){
 	
 	
      echo "FormatCSV";
 
-     
+    
      
  } 
 ?>
-</div>
-</body>
-</html>
