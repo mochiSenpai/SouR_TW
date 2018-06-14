@@ -317,59 +317,44 @@ function add($val){
 
     function XML($newDataToExport){
 
-    }
-
-/*
-function XML(){
- 	$use = $_SESSION['use'];
-
-	$id= array();
-	$nume=array();
-	//$des=array();
-	//$photo_link=array();
-	//$price=array();
-
-	 $sql =mysqli_query( $dbconn,"SELECT id,name,description,photo_link,price from souvenirs");
-	 $row = mysqli_fetch_array($sql);
-
-	while ($row = $sql->fetch_array(MYSQLI_ASSOC))
-	{
-	   array_push($id, $row["id"]);
-	   array_push($nume, $row["name"]);
-	   //array_push($des, $row["description"]);
-	  // array_push($photo_link, $row["photo_link"]);
-	   //array_push($price, $row["price"]);
-	}
-
  	
 	
-	$filePath = '../exports/book.xml';
+   $filePath = '../exports/FormatXML.xml';
 
    $dom = new DOMDocument('1.0', 'utf-8'); 
    $root = $dom->createElement('suveniruri'); 
    
-    for($x=0;$x<count($id);$x++){
+ 
+	$rows = array();
+	while($newRow = mysqli_fetch_assoc($newDataToExport)) {
+	    $rows[] = $newRow;
 		
-	$suvid=$id[$x];
-	$suvname=$nume[$x];
-	//$suvdes=$des[$x];
-	//$suvphoto=$photo_link[$x];
-	//$suvprice=$price[$x];
+	}
+
+		//var_dump( $rows);
 	
 
+
+ for($x=0;$x<count($rows);$x++)
+	{
+	   $id= $rows[$x]['id'];
+	   $nume=  $rows[$x]["name"];
+	   $des=  $rows[$x]["description"];
+	   $photo= $rows[$x]["photo_link"];
+	   $price=  $rows[$x]["price"];
 	
-	$book = $dom->createElement('suvenir');
-    $ID= $dom->createElement('id', $suvid); 
+    $book = $dom->createElement('suvenir');
+    $ID= $dom->createElement('id', $id); 
     $book->appendChild($ID); 
-	$NUME=$dom->createElement('nume', $suvname); 
+	$NUME=$dom->createElement('nume', $nume); 
 	$book->appendChild($NUME);
-	//$DESCRIPTION=$dom->createElement('description', $suvdes); 
-	//$book->appendChild($DESCRIPTION);
-	//$PHOTO=$dom->createElement('link_photo', $suvphoto); 
-	//$book->appendChild($PHOTO);
-	//$PRICE=$dom->createElement('price', $suvprice); 
-	//$book->appendChild($PRICE);
- $dom->appendChild($book); 
+	$DESCRIPTION=$dom->createElement('description', $des); 
+	$book->appendChild($DESCRIPTION);
+	$PHOTO=$dom->createElement('link_photo', $photo); 
+	$book->appendChild($PHOTO);
+	$PRICE=$dom->createElement('price', $price); 
+	$book->appendChild($PRICE);
+    $root->appendChild($book); 
    }
    
    $dom->appendChild($root); 
@@ -377,7 +362,7 @@ function XML(){
 }
 
 
-*/
+
 
 
  function HTML($newDataToExport){

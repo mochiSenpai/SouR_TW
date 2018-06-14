@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<suveniruri><suvenir><id>1</id><nume>Wine</nume><description>Best wine you will ever have</description><link_photo>fr_wine.jpg</link_photo><price>26.45</price></suvenir><suvenir><id>2</id><nume>Eiffel Keychain</nume><description>Twinkle twinkle</description><link_photo>fr_eiffel_keychain.jpg</link_photo><price>4.05</price></suvenir></suveniruri>
