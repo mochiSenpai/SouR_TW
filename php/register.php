@@ -33,7 +33,8 @@ if(password_verify(trim($pass),trim($row["password"])))
           $result = mysqli_num_rows($sql);                             
           $_SESSION['use']=$row[1];
 		  echo '<script type="text/javascript"> window.open("../php/home.php","_self");</script>';            //  On Successful Login redirects to home.php
-	}}
+	}
+}
 else {
 			
 	echo"Nume utilizator sau parola gresita";
@@ -112,6 +113,7 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/IndexStyle.css">
+ 
 </head>
 
 
@@ -120,11 +122,30 @@ $hashedPwd = trim(password_hash($password, PASSWORD_BCRYPT, [12]));
     <div class="container">           
       <div class="topbar">
           <form action="" method="post">
-          <div class="fl"><input type="text" name="user" ></div>
+          <div class="fl"><input type="text" name="user" onkeyup="showHint(this.value)" ></div>
           <div class="fl" ><input type="password" name="pass"></div>
           <div class="fl"><input  style="width: 210px;" type="submit" name="login" value="LOGIN"></div>
            </form>
+           
       </div>
+      <p>Suggestions: <span id="txtHint"></span></p> 
+       <script>
+        function showHint(str) {
+        if (str.length == 0) { 
+            document.getElementById("txtHint").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "gethint.php?q=" + str, true);
+            xmlhttp.send();
+    }
+}
+</script>
     </div>  
     <div>
       <div class="col-1"></div>
